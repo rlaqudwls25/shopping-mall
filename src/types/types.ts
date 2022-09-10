@@ -9,3 +9,18 @@ export enum METHOD {
 export interface fetchObj {
   [key: string]: any
 }
+
+export type Rating = {
+  rate: number
+  count: number
+}
+
+export type ProductList = {
+  category: string
+  description: string
+  id: number
+  image: string
+  price: number
+  title: string
+  rating: Rating
+}
