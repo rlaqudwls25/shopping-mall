@@ -6,10 +6,7 @@ import { METHOD, Product } from '../../types/types'
 
 const ProductList = () => {
   const { data } = useQuery(QueryKeys.PRODUCTS, () =>
-    fetcher({
-      method: METHOD.GET,
-      path: '/products',
-    })
+    fetcher(METHOD.GET, './products')
   )
 
   return (
