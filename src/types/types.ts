@@ -15,7 +15,7 @@ export type Rating = {
   count: number
 }
 
-export type ProductList = {
+export type Product = {
   category: string
   description: string
   id: number

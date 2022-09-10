@@ -1,26 +1,18 @@
 import React from 'react'
-import { ProductList } from '../../types/types'
+import { Product } from '../../types/types'
 
 const ProductItem = ({
   category,
-  description,
-  id,
   image,
   price,
-  rating,
   title,
-}: ProductList): JSX.Element => {
+}: Product): JSX.Element => {
   return (
-    <li>
-      <p>{category}</p>
-      <p>{description}</p>
+    <li className="products-item">
+      <p className="category">{category}</p>
+      <span className="title">{title}</span>
       <img src={image} />
-      <span>{price}</span>
-      <span>
-        {rating.count}
-        {rating.rate}
-      </span>
-      <span>{title}</span>
+      <span className="price">${price}</span>
     </li>
   )
 }
