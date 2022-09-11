@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Product } from '../../types/types'
 
 const ProductItem = ({
@@ -6,14 +7,19 @@ const ProductItem = ({
   image,
   price,
   title,
+  id,
 }: Product): JSX.Element => {
   return (
-    <li className="products-item">
-      <p className="category">{category}</p>
-      <span className="title">{title}</span>
-      <img src={image} />
-      <span className="price">${price}</span>
-    </li>
+    <>
+      <li className="products-item">
+        <Link to={`/products/${id}`}>
+          <p className="category">{category}</p>
+          <span className="title">{title}</span>
+          <img src={image} />
+          <span className="price">${price}</span>
+        </Link>
+      </li>
+    </>
   )
 }
 
