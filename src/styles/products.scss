@@ -17,3 +17,8 @@
     object-fit: contain;
   }
 }
+
+.products-detail {
+  display: flex;
+  flex-direction: column;
+}
