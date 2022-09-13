@@ -1,6 +1,7 @@
 .products {
   list-style: none;
   display: grid;
+  padding: 0;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
