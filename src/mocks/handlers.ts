@@ -1,6 +1,6 @@
 import { graphql } from 'msw'
 // import { v4 as uuid } from 'uuid'
-import { ADD_CART, CartType, GET_CART } from '../graphql/cart'
+import { ADD_CART, CartType, GET_CART, UPDATE_CART } from '../graphql/cart'
 import { GET_PRODUCT, GET_PRODUCTS } from '../graphql/products'
 
 const mockProducts = Array.from({ length: 20 }).map((_, idx) => ({
@@ -63,5 +63,24 @@ export const handlers = [
     console.log(res)
     cartData = newData
     return res(ctx.data(newData))
+  }),
+
+  graphql.mutation(UPDATE_CART, (req, res, ctx) => {
+    let newData = { ...cartData }
+    const cartId = req.variables.id
+    const amount = req.variables.amount
+
+    if (!newData[cartId]) throw new Error('없는 데이터 입니다.')
+
+    newData[cartId] = {
+      ...newData[cartId],
+      amount,
+    }
+
+    cartData = newData
+
+    console.log('cartData', cartData)
+
+    return res(ctx.data(cartData))
   }),
 ]

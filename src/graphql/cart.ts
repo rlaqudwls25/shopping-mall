@@ -27,3 +27,13 @@ export const ADD_CART = gql`
     amount
   }
 `
+
+export const UPDATE_CART = gql`
+  mutation UPDATE_CART($id: string, $amount: number) {
+    id
+    imageUrl
+    price
+    title
+    amount
+  }
+`
