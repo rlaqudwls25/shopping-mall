@@ -60,7 +60,6 @@ export const handlers = [
       }
     }
 
-    console.log(res)
     cartData = newData
     return res(ctx.data(newData))
   }),
@@ -78,8 +77,6 @@ export const handlers = [
     }
 
     cartData = newData
-
-    console.log('cartData', cartData)
 
     return res(ctx.data(cartData))
   }),

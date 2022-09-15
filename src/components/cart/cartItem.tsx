@@ -8,8 +8,21 @@ const CartItem = ({ id, imageUrl, price, title, amount }: CartType) => {
   const { mutate: updateCart } = useMutation(
     ({ id, amount }: { id: string; amount: number }) =>
       graphqlFetcher(UPDATE_CART, { id, amount }),
+
     {
-      onSuccess: () => queryClient.invalidateQueries(QueryKeys.CART),
+      // 응답이 성공했을 때 값을 update 시켜준다.
+      onSuccess: (newValue) => {
+        console.log('newValue', newValue)
+        // cartItem 하나에 대한 데이터 update
+        const prevCart = queryClient.getQueryData(QueryKeys.CART)
+        const newCart = {
+          ...(prevCart || {}),
+          ...newValue,
+        }
+
+        // cartItem 전체에 대한 데이터를 update
+        queryClient.setQueryData(QueryKeys.CART, newCart)
+      },
     }
   )
 
