@@ -39,29 +39,27 @@ export const handlers = [
   }),
 
   graphql.mutation(ADD_CART, (req, res, ctx) => {
-    let newData = { ...cartData }
+    let newCartData = { ...cartData }
     const cartId = req.variables.id
 
-    if (newData[cartId]) {
-      newData[cartId] = {
-        ...newData[cartId],
-        amount: (newData[cartId].amount || 0) + 1,
-      }
-    } else {
-      const targetDetail = mockProducts.find(
-        (item) => item.id === req.variables.id
-      )
+    const targetProduct = mockProducts.find(
+      (item) => item.id === req.variables.id
+    )
 
-      if (targetDetail) {
-        newData[cartId] = {
-          ...targetDetail,
-          amount: 1,
-        }
-      }
+    if (!targetProduct) throw new Error('상품이 없습니다.')
+
+    const newItem = {
+      ...targetProduct,
+      amount: (newCartData[cartId]?.amount || 0) + 1,
     }
 
-    cartData = newData
-    return res(ctx.data(newData))
+    newCartData[cartId] = newItem
+
+    console.log('cartData1', cartData)
+    cartData = newCartData
+
+    console.log('cartData2', cartData)
+    return res(ctx.data(newItem))
   }),
 
   graphql.mutation(UPDATE_CART, (req, res, ctx) => {
@@ -71,13 +69,14 @@ export const handlers = [
 
     if (!newData[cartId]) throw new Error('없는 데이터 입니다.')
 
-    newData[cartId] = {
+    const newItem = {
       ...newData[cartId],
       amount,
     }
 
+    newData[cartId] = newItem
     cartData = newData
 
-    return res(ctx.data(cartData))
+    return res(ctx.data(newItem))
   }),
 ]
