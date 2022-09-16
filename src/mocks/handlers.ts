@@ -1,6 +1,12 @@
 import { graphql } from 'msw'
 // import { v4 as uuid } from 'uuid'
-import { ADD_CART, CartType, GET_CART, UPDATE_CART } from '../graphql/cart'
+import {
+  ADD_CART,
+  CartType,
+  DELETE_CART,
+  GET_CART,
+  UPDATE_CART,
+} from '../graphql/cart'
 import { GET_PRODUCT, GET_PRODUCTS } from '../graphql/products'
 
 const mockProducts = Array.from({ length: 20 }).map((_, idx) => ({
@@ -78,5 +84,17 @@ export const handlers = [
     cartData = newData
 
     return res(ctx.data(newItem))
+  }),
+
+  graphql.mutation(DELETE_CART, (req, res, ctx) => {
+    let newData = { ...cartData }
+
+    // const deleteId = req.variables.id
+
+    delete newData[req.variables.id]
+
+    cartData = newData
+
+    return res(ctx.data(req.variables.id))
   }),
 ]
