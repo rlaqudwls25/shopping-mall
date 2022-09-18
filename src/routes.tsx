@@ -3,6 +3,7 @@ import Index from './pages/index'
 import CartIndex from './pages/cart/index'
 import ProductsIndex from './pages/products/index'
 import ProductsId from './pages/products/[id]'
+import Payment from './pages/payment'
 
 export const routes = [
   {
@@ -13,6 +14,7 @@ export const routes = [
       { path: '/cart', element: <CartIndex />, index: true },
       { path: '/products', element: <ProductsIndex />, index: true },
       { path: '/products/:id', element: <ProductsId /> },
+      { path: '/payment', element: <Payment /> },
     ],
   },
 ]
