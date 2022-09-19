@@ -61,10 +61,8 @@ export const handlers = [
 
     newCartData[cartId] = newItem
 
-    console.log('cartData1', cartData)
     cartData = newCartData
 
-    console.log('cartData2', cartData)
     return res(ctx.data(newItem))
   }),
 

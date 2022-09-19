@@ -5,7 +5,7 @@ import React, {
   createRef,
   useEffect,
 } from 'react'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { CartType } from '../../graphql/cart'
 import { cartState } from '../../recoils/cart'
 import CartItem from './cartItem'
@@ -19,11 +19,23 @@ const CartList = ({ items }: { items: CartType[] }) => {
   const [formData, setFormData] = useState<FormData>()
 
   useEffect(() => {
+    maintainCartData()
+  }, [])
+
+  useEffect(() => {
     updateCheckedData()
   }, [items, formData])
 
   useEffect(() => {
-    test()
+    checkedCartData.forEach((item) => {
+      const isItem = checkboxRefs.find(
+        (ref) => ref.current?.dataset.id === item.id
+      )
+
+      if (isItem) {
+        isItem.current!.checked = true
+      }
+    })
   }, [])
 
   const handleCheckBoxChanged = (e: SyntheticEvent) => {
@@ -50,6 +62,18 @@ const CartList = ({ items }: { items: CartType[] }) => {
     setFormData(data)
   }
 
+  const maintainCartData = () => {
+    checkedCartData.forEach((item) => {
+      const isItem = checkboxRefs.find(
+        (ref) => ref.current?.dataset.id === item.id
+      )
+
+      if (isItem) {
+        isItem.current!.checked = true
+      }
+    })
+  }
+
   const updateCheckedData = () => {
     const checkedItem = checkboxRefs.reduce<CartType[]>((res, ref, idx) => {
       if (ref.current?.checked) res.push(items[idx])
@@ -57,20 +81,6 @@ const CartList = ({ items }: { items: CartType[] }) => {
     }, [])
 
     setCheckedCartData(checkedItem)
-  }
-
-  const test = () => {
-    // 체크되어있는 data와
-    checkedCartData.forEach((item) => {
-      const $isItem = checkboxRefs.find(
-        (ref) => ref.current?.dataset.id === item.id
-      )
-
-      if ($isItem) {
-        console.log('isItem', $isItem)
-        $isItem.current!.checked = true
-      }
-    })
   }
 
   return (

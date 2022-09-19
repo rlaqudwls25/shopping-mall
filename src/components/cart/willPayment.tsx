@@ -21,7 +21,6 @@ const WillPayment = () => {
       <ul>
         {checkedItems?.map((item: CartType) => {
           const { amount, price, title, imageUrl } = item
-          console.log('item', item)
           return (
             <li key={item.id}>
               <img src={imageUrl} />
