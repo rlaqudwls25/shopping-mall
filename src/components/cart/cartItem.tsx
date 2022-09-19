@@ -1,9 +1,4 @@
-import React, {
-  ForwardedRef,
-  forwardRef,
-  RefObject,
-  SyntheticEvent,
-} from 'react'
+import React, { ForwardedRef, forwardRef, SyntheticEvent } from 'react'
 import { useMutation } from 'react-query'
 import { CartType, DELETE_CART, UPDATE_CART } from '../../graphql/cart'
 import { getClient, graphqlFetcher, QueryKeys } from '../../queryClient'

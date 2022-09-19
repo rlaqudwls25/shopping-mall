@@ -2,7 +2,7 @@ import GlobalLayout from './pages/_layout'
 import Index from './pages/index'
 import CartIndex from './pages/cart/index'
 import ProductsIndex from './pages/products/index'
-import ProductsId from './pages/products/[id]'
+import ProductsId from './pages/products/detail'
 import Payment from './pages/payment'
 
 export const routes = [

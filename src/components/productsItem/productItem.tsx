@@ -7,13 +7,7 @@ import { PRODUCT } from '../../graphql/products'
 import { graphqlFetcher, QueryKeys } from '../../queryClient'
 import { Product } from '../../types/types'
 
-const ProductItem = ({
-  description,
-  imageUrl,
-  price,
-  title,
-  id,
-}: PRODUCT): JSX.Element => {
+const ProductItem = ({ description, imageUrl, price, title, id }: PRODUCT) => {
   const { mutate: addCart } = useMutation((id: string) =>
     graphqlFetcher(ADD_CART, { id })
   )

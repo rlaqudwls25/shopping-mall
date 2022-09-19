@@ -8,9 +8,9 @@ import React, {
 import { useRecoilState } from 'recoil'
 import { CartType } from '../../graphql/cart'
 import { cartState } from '../../recoils/cart'
-import Payment from '../willPayment/index'
 import CartItem from './cartItem'
 import { useNavigate } from 'react-router-dom'
+import WillPayment from '../willPayment/index'
 
 const CartList = ({ items }: { items: CartType[] }) => {
   const formRef = useRef<HTMLFormElement>(null)
@@ -107,7 +107,7 @@ const CartList = ({ items }: { items: CartType[] }) => {
           ))}
         </ul>
       </form>
-      <Payment subTitle="결제창으로 가기" goNextStep={goNextStep} />
+      <WillPayment subTitle="결제창으로 가기" goNextStep={goNextStep} />
     </>
   )
 }
