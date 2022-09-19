@@ -1,0 +1,43 @@
+#modal .modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+
+  .modal-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 400px;
+    background-color: #fff;
+    width: 80%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.5;
+  }
+
+  .payment-btn {
+    display: flex;
+    justify-content: center;
+  }
+
+  &.show {
+    display: block;
+  }
+}

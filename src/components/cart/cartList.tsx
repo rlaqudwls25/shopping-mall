@@ -8,8 +8,9 @@ import React, {
 import { useRecoilState } from 'recoil'
 import { CartType } from '../../graphql/cart'
 import { cartState } from '../../recoils/cart'
+import Payment from '../willPayment/index'
 import CartItem from './cartItem'
-import Payment from './willPayment'
+import { useNavigate } from 'react-router-dom'
 
 const CartList = ({ items }: { items: CartType[] }) => {
   const formRef = useRef<HTMLFormElement>(null)
@@ -17,9 +18,11 @@ const CartList = ({ items }: { items: CartType[] }) => {
   const [checkedCartData, setCheckedCartData] =
     useRecoilState<CartType[]>(cartState)
   const [formData, setFormData] = useState<FormData>()
+  const navigate = useNavigate()
 
   useEffect(() => {
     maintainCartData()
+    handleCheckBoxChanged()
   }, [])
 
   useEffect(() => {
@@ -38,15 +41,15 @@ const CartList = ({ items }: { items: CartType[] }) => {
     })
   }, [])
 
-  const handleCheckBoxChanged = (e: SyntheticEvent) => {
+  const handleCheckBoxChanged = (e?: SyntheticEvent) => {
     if (!formRef.current) return
 
     // 어떤 input이 target 되었는지 알 수 있음
-    const targetInput = e.target as HTMLInputElement
+    const targetInput = e?.target as HTMLInputElement
 
     const data = new FormData(formRef.current)
 
-    if (targetInput.classList.contains('select-all')) {
+    if (targetInput && targetInput.classList.contains('select-all')) {
       // select-all 선택시
       const allChecked = targetInput.checked
       checkboxRefs.forEach((inputEle) => {
@@ -83,6 +86,14 @@ const CartList = ({ items }: { items: CartType[] }) => {
     setCheckedCartData(checkedItem)
   }
 
+  const goNextStep = () => {
+    if (checkedCartData.length) {
+      navigate('/payment')
+    } else {
+      alert('결제할 품목이 없습니다.')
+    }
+  }
+
   return (
     <>
       <form ref={formRef} onChange={handleCheckBoxChanged}>
@@ -96,7 +107,7 @@ const CartList = ({ items }: { items: CartType[] }) => {
           ))}
         </ul>
       </form>
-      <Payment />
+      <Payment subTitle="결제창으로 가기" goNextStep={goNextStep} />
     </>
   )
 }

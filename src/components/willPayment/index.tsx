@@ -2,19 +2,20 @@ import React from 'react'
 import { useRecoilValue } from 'recoil'
 import { CartType } from '../../graphql/cart'
 import { cartState } from '../../recoils/cart'
-import { useNavigate } from 'react-router-dom'
 
-const WillPayment = () => {
-  const navigate = useNavigate()
+// 장바구니
+const WillPayment = ({
+  goNextStep,
+  subTitle,
+}: {
+  goNextStep: () => void
+  subTitle: string
+}) => {
   const checkedItems = useRecoilValue(cartState)
   const totalPrice = checkedItems.reduce(
     (cur, { amount, price }) => (cur += amount * price),
     0
   )
-
-  const goPaymentPage = () => {
-    navigate('/payment')
-  }
 
   return (
     <div className="cart-payment">
@@ -32,7 +33,7 @@ const WillPayment = () => {
         })}
       </ul>
       <div>전체 금액:{totalPrice}</div>
-      <button onClick={goPaymentPage}>결제하기</button>
+      <button onClick={goNextStep}>{subTitle}</button>
     </div>
   )
 }
