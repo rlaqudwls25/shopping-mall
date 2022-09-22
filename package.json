@@ -1,35 +1,16 @@
 {
   "name": "shopping-mall",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rlaqudwls25/shopping-mall.git",
+  "author": "rlaqudwls25 <rlaqudwls157@gmail.com>",
+  "license": "MIT",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "axios": "^0.27.2",
-    "graphql-request": "^5.0.0",
-    "graphql-tag": "^2.12.6",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-query": "^3.34.16",
-    "react-router-dom": "^6.3.0",
-    "recoil": "^0.7.5",
-    "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "@types/react": "^17.0.33",
-    "@types/react-dom": "^17.0.10",
-    "@types/uuid": "^8.3.4",
-    "@vitejs/plugin-react": "^2.1.0",
-    "msw": "^0.47.2",
-    "scss": "^0.2.4",
-    "typescript": "^4.6.4",
-    "vite": "^3.0.0"
-  },
-  "msw": {
-    "workerDirectory": "public"
+    "client": "yarn workspace client run dev"
   }
 }
