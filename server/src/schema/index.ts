@@ -16,4 +16,4 @@ const linkSchema = gql`
   }
 `
 
-export default { linkSchema, productSchema, cartSchema }
+export default [linkSchema, productSchema, cartSchema]

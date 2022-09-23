@@ -1,8 +1,9 @@
 import { mockProducts } from './product'
+import { Resolver } from './type'
 
 let cartData: { [key: string]: any } = []
 
-const cartResolver = {
+const cartResolver: Resolver = {
   Query: {
     carts: (parent, args, context, info) => {
       return cartData
@@ -44,9 +45,10 @@ const cartResolver = {
 
       return id
     },
-    excutePay: (parent, { ids }, context, info) => {
+    executePay: (parent, { ids }, context, info) => {
       const newCartData = cartData.filter(
-        (cartItem) => !ids.includes(cartItem.id)
+        (cartItem: { [key: string]: string | number }) =>
+          !ids.includes(cartItem.id)
       )
       cartData = newCartData
 
