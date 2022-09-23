@@ -1,5 +1,7 @@
 import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
+import schema from './schema'
+import resolver from './resolver'
 ;(async () => {
   const server = new ApolloServer({ typeDefs, resolvers })
 
