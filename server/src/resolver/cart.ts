@@ -5,7 +5,7 @@ let cartData: { [key: string]: any } = []
 
 const cartResolver: Resolver = {
   Query: {
-    carts: (parent, args, context, info) => {
+    cart: (parent, args, context, info) => {
       return cartData
     },
   },

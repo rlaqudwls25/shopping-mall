@@ -10,7 +10,7 @@ const cartSchema = gql`
   }
 
   type Query {
-    carts: [CartItem!]
+    cart: [CartItem!]
   }
   type Mutation {
     addCart(id: ID!): CartItem!
