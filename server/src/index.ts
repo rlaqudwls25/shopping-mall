@@ -1,5 +1,5 @@
 import express from 'express'
-import { ApolloServer, Config, ExpressContext } from 'apollo-server-express'
+import { ApolloServer } from 'apollo-server-express'
 import schema from './schema'
 import resolvers from './resolver'
 import { DBField, readDB } from './dbController'

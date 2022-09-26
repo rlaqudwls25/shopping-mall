@@ -1,59 +1,84 @@
-import { mockProducts } from './product'
-import { Resolver } from './type'
+import { DBField, writeDB } from '../dbController'
+import { Cart, Products, Resolver } from './type'
 
-let cartData: { [key: string]: any } = []
+const setJSON = (data: Cart) => writeDB(DBField.CART, data)
 
 const cartResolver: Resolver = {
   Query: {
-    cart: (parent, args, context, info) => {
-      return cartData
+    cart: (parent, args, { db }) => {
+      return db.cart
     },
   },
   Mutation: {
-    addCart: (parent, { id }, context, info) => {
-      let newCartData = { ...cartData }
-      const targetProduct = mockProducts.find((item) => item.id === id)
-
-      const newItem = {
-        ...targetProduct,
-        amount: (newCartData[id]?.amount || 0) + 1,
+    addCart: (parent, { id }, { db }, info) => {
+      if (!id) throw Error('상품 ID가 없다.')
+      // targetProduct는 어떤 상품을 담았는지 알기 위함
+      // 그런데 지금은 cart data에서 직접 찾아 index를 뽑아낸다.
+      const targetProduct = db.products.find((item) => item.id === id)
+      if (!targetProduct) {
+        throw Error('상품이 없다.')
       }
 
-      newCartData[id] = newItem
-      cartData = newCartData
+      const existCartIndex = db.cart.findIndex((item) => item.id === id)
+      if (existCartIndex > -1) {
+        const newCartItem = {
+          // ...db.cart[existCartIndex],
+          id,
+          amount: db.cart[existCartIndex].amount + 1,
+        }
+        db.cart.splice(existCartIndex, 1, newCartItem)
+        setJSON(db.cart)
 
-      return newItem
-    },
-    updateCart: (parent, { id, amount }, context, info) => {
-      let newData = { ...cartData }
+        return newCartItem
+      }
+
+      // amount 증가 문제..
+      // newItem에 id만 오는 이유가 뭘까..
 
       const newItem = {
-        ...newData[id],
+        id,
+        amount: 1,
+      }
+
+      db.cart.push(newItem)
+      setJSON(db.cart)
+      return newItem
+    },
+    updateCart: (parent, { id, amount }, { db }) => {
+      const updateTarget = db.cart.findIndex((item) => item.id === id)
+
+      if (!updateTarget) throw Error('상품이 없다.')
+
+      const newCartItem = {
+        // ...db.cart[updateTarget],
+        id,
         amount,
       }
 
-      newData[id] = newItem
-      cartData = newData
-
-      return newItem
+      db.cart.splice(updateTarget, 1, newCartItem)
+      setJSON(db.cart)
+      return newCartItem
     },
-    deleteCart: (parent, { id }, context, info) => {
-      let newData = { ...cartData }
+    deleteCart: (parent, { id }, { db }, info) => {
+      const deleteTarget = db.cart.findIndex((item) => item.id === id)
 
-      delete newData[id]
-      cartData = newData
-
+      db.cart.splice(deleteTarget, 1)
+      setJSON(db.cart)
       return id
     },
-    executePay: (parent, { ids }, context, info) => {
-      const newCartData = cartData.filter(
-        (cartItem: { [key: string]: string | number }) =>
-          !ids.includes(cartItem.id)
+    executePay: (parent, { ids }, { db }, info) => {
+      const newCartData = db.cart.filter(
+        (cartItem) => !ids.includes(cartItem.id)
       )
-      cartData = newCartData
-
+      db.cart = newCartData
+      setJSON(db.cart)
       return ids
     },
+  },
+
+  CartItem: {
+    product: (cartItem, args, { db }) =>
+      db.products.find((product: any) => product.id === cartItem.id),
   },
 }
 

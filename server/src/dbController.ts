@@ -9,7 +9,7 @@ export enum DBField {
 }
 const filenames = {
   [DBField.CART]: resolve(basePath, 'src/db/cart.json'),
-  [DBField.PRODUCTS]: resolve(basePath, 'src/db/product.json'),
+  [DBField.PRODUCTS]: resolve(basePath, 'src/db/products.json'),
 }
 
 export const readDB = (target: DBField) => {
