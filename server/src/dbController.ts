@@ -3,8 +3,8 @@ import { resolve } from 'path'
 
 const basePath = resolve()
 
-enum DBField {
-  CART = 'carts',
+export enum DBField {
+  CART = 'cart',
   PRODUCTS = 'products',
 }
 const filenames = {
