@@ -20,12 +20,15 @@ const cartResolver: Resolver = {
       }
 
       const existCartIndex = db.cart.findIndex((item) => item.id === id)
+      console.log('????')
       if (existCartIndex > -1) {
         const newCartItem = {
           // ...db.cart[existCartIndex],
           id,
           amount: db.cart[existCartIndex].amount + 1,
         }
+
+        console.log('newCartItem', newCartItem)
         db.cart.splice(existCartIndex, 1, newCartItem)
         setJSON(db.cart)
 
@@ -42,6 +45,9 @@ const cartResolver: Resolver = {
 
       db.cart.push(newItem)
       setJSON(db.cart)
+
+      console.log('db.cart', db.cart)
+      console.log('newItem', newItem)
       return newItem
     },
     updateCart: (parent, { id, amount }, { db }) => {

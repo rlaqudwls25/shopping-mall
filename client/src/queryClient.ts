@@ -26,7 +26,7 @@ export const getClient = (() => {
 
 // axios.defaults.baseURL = 'https://fakestoreapi.com'
 
-const BASE_URL = '/'
+const URL = 'http://localhost:8000/graphql'
 
 // export const fetcher = async (
 //   method: METHOD,
@@ -38,7 +38,7 @@ const BASE_URL = '/'
 // }
 
 export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
-  request(BASE_URL, query, variables)
+  request(URL, query, variables)
 
 export const QueryKeys = {
   PRODUCTS: 'PRODUCTS',

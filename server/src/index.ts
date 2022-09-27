@@ -21,7 +21,11 @@ import { DBField, readDB } from './dbController'
     app,
     path: '/graphql',
     cors: {
-      origin: ['http://localhost:3000', 'https://studio.apollographql.com'],
+      origin: [
+        'http://localhost:3000',
+        'https://studio.apollographql.com',
+        'http://127.0.0.1:5173',
+      ],
       credentials: true,
     },
   })

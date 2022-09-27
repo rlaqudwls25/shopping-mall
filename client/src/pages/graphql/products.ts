@@ -6,7 +6,7 @@ export type PRODUCT = {
   price: number
   title: string
   description: string
-  createdAt: string
+  createdAt: number
 }
 
 export type PRODUCTS = {
@@ -14,12 +14,14 @@ export type PRODUCTS = {
 }
 export const GET_PRODUCTS = gql`
   query GET_PRODUCTS {
-    id
-    imageUrl
-    price
-    title
-    description
-    createdAt
+    products {
+      id
+      imageUrl
+      price
+      title
+      description
+      createdAt
+    }
   }
 `
 
