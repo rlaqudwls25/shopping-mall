@@ -1,5 +1,5 @@
 import { DBField, writeDB } from '../dbController'
-import { Cart, Products, Resolver } from './type'
+import { Cart, Resolver } from './type'
 
 const setJSON = (data: Cart) => writeDB(DBField.CART, data)
 
@@ -10,13 +10,13 @@ const cartResolver: Resolver = {
     },
   },
   Mutation: {
-    addCart: (parent, { id }, { db }, info) => {
-      if (!id) throw Error('상품 ID가 없다.')
+    addCart: (parent, { id }, { db }) => {
+      if (!id) throw new Error('상품 ID가 없습니다.')
       // targetProduct는 어떤 상품을 담았는지 알기 위함
       // 그런데 지금은 cart data에서 직접 찾아 index를 뽑아낸다.
       const targetProduct = db.products.find((item) => item.id === id)
       if (!targetProduct) {
-        throw Error('상품이 없다.')
+        throw new Error('상품이 없습니다.')
       }
 
       const existCartIndex = db.cart.findIndex((item) => item.id === id)

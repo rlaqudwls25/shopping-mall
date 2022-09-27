@@ -1,5 +1,5 @@
 export type Resolver = {
-  [key: string]: {
+  [k: string]: {
     [key: string]: (
       parent: any,
       args: { [key: string]: any },

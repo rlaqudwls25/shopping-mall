@@ -5,7 +5,7 @@ import resolvers from './resolver'
 import { DBField, readDB } from './dbController'
 ;(async () => {
   const server = new ApolloServer({
-    typeDefs: schema as any,
+    typeDefs: schema,
     resolvers,
     context: {
       db: {
