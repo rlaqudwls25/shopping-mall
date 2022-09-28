@@ -4,7 +4,7 @@ import { CartType, DELETE_CART, UPDATE_CART } from '../../pages/graphql/cart'
 import { getClient, graphqlFetcher, QueryKeys } from '../../queryClient'
 
 const CartItem = (
-  { id, imageUrl, price, title, amount }: CartType,
+  { id, amount, product: { imageUrl, price, title } }: CartType,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const queryClient = getClient()
@@ -14,16 +14,29 @@ const CartItem = (
 
     {
       // 응답이 성공했을 때 값을 update 시켜준다.
-      onSuccess: (newValue) => {
+      onSuccess: ({ updateCart }) => {
         // cartItem 하나에 대한 데이터 update
-        const prevCart = queryClient.getQueryData(QueryKeys.CART)
-        const newCart = {
-          ...(prevCart || {}),
-          [id]: newValue,
-        }
+        const { cart: prevCart } = queryClient.getQueryData<{
+          cart: CartType[]
+        }>(QueryKeys.CART) || { cart: [] }
+
+        const targetIndex = prevCart?.findIndex(
+          (item) => item.id === updateCart.id
+        )
+
+        if (!prevCart || targetIndex === undefined || targetIndex < 0) return
+
+        const newCart = [...prevCart]
+
+        // const newCart = {
+        //   ...(prevCart || {}),
+        //   [id]: newValue,
+        // }
+
+        newCart.splice(targetIndex, 1, updateCart)
 
         // cartItem 전체에 대한 데이터를 update
-        queryClient.setQueryData(QueryKeys.CART, newCart)
+        queryClient.setQueryData(QueryKeys.CART, { cart: newCart })
       },
     }
   )

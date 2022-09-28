@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
-import { EXCUTE_PAY } from '../../pages/graphql/payment'
+import { EXECUTE_PAY } from '../../pages/graphql/payment'
 import { graphqlFetcher } from '../../queryClient'
 import { cartState } from '../../recoils/cart'
 import WillPayment from '../willPayment'
@@ -15,8 +15,8 @@ const Payment = () => {
   const navigate = useNavigate()
   const [toggleModal, setToggleModal] = useState<boolean>(false)
 
-  const { mutate: excutePay } = useMutation((id: string[]) =>
-    graphqlFetcher(EXCUTE_PAY, id)
+  const { mutate: excutePay } = useMutation((ids: string[]) =>
+    graphqlFetcher(EXECUTE_PAY, { ids })
   )
 
   const showModal = () => {
@@ -24,10 +24,14 @@ const Payment = () => {
   }
 
   const proceed = () => {
-    const payInfos = checkedCartData.map(({ id }) => id)
-    setCheckedCartData([])
-    excutePay(payInfos)
-    navigate('/products', { replace: true })
+    const ids = checkedCartData.map(({ id }) => id)
+    excutePay(ids, {
+      onSuccess: () => {
+        setCheckedCartData([])
+        alert('결제가 완료되었습니다.')
+        navigate('/products', { replace: true })
+      },
+    })
   }
 
   const cancel = () => {

@@ -2,7 +2,6 @@ import React, { ReactChild } from 'react'
 import { createPortal } from 'react-dom'
 
 const ModalPortal = ({ children }: { children: ReactChild }) => {
-  console.log('children', children)
   // 첫번 째 인자 child는 엘리먼트, 혹은 fragment와 같은 어떤 종류이든 렌더링 할 수 있는 React 자식
   // 두 번째 인자는 DOM 엘리먼트
   return createPortal(children, document.getElementById('modal')!)

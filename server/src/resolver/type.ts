@@ -1,12 +1,12 @@
 export type Resolver = {
-  [k: string]: {
+  [key: string]: {
     [key: string]: (
       parent: any,
       args: { [key: string]: any },
       context: {
         db: {
-          products: Products
           cart: Cart
+          products: Products
         }
       },
       info: any
@@ -20,11 +20,10 @@ export type Product = {
   price: number
   title: string
   description: string
-  createdAt: number
+  createdAt?: number
 }
 
 export type Products = Product[]
-
 export type CartItem = {
   id: string
   amount: number

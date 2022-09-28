@@ -1,13 +1,11 @@
 import React from 'react'
 import { useMutation } from 'react-query'
 import { Link } from 'react-router-dom'
-import { useRecoilState, useRecoilValue } from 'recoil'
 import { ADD_CART } from '../../pages/graphql/cart'
-import { PRODUCT } from '../../pages/graphql/products'
-import { graphqlFetcher, QueryKeys } from '../../queryClient'
-import { Product } from '../../types/types'
+import { Product } from '../../pages/graphql/products'
+import { graphqlFetcher } from '../../queryClient'
 
-const ProductItem = ({ description, imageUrl, price, title, id }: PRODUCT) => {
+const ProductItem = ({ description, imageUrl, price, title, id }: Product) => {
   const { mutate: addCart } = useMutation((id: string) =>
     graphqlFetcher(ADD_CART, { id })
   )

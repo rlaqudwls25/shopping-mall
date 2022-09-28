@@ -10,7 +10,7 @@ const Cart = () => {
     cacheTime: 1000,
   })
 
-  const newData = Object.values(data || {}) as CartType[]
+  const newData = (data?.cart || []) as CartType[]
 
   if (!newData.length) return <div>장바구니가 비었습니다.</div>
 

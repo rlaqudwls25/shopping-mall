@@ -13,7 +13,7 @@ const WillPayment = ({
 }) => {
   const checkedItems = useRecoilValue<CartType[]>(cartState)
   const totalPrice = checkedItems.reduce(
-    (cur, { amount, price }) => (cur += amount * price),
+    (cur, { amount, product: { price } }) => (cur += amount * price),
     0
   )
 
@@ -21,7 +21,11 @@ const WillPayment = ({
     <div className="cart-payment">
       <ul>
         {checkedItems?.map((item: CartType) => {
-          const { amount, price, title, imageUrl, id } = item
+          const {
+            amount,
+            product: { price, title, imageUrl },
+            id,
+          } = item
           return (
             <li key={id}>
               <img src={imageUrl} />

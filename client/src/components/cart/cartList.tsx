@@ -102,7 +102,7 @@ const CartList = ({ items }: { items: CartType[] }) => {
           <input className="select-all" name="select-all" type="checkbox" />
         </label>
         <ul className="cart">
-          {items.map((item, idx) => (
+          {items?.map((item, idx) => (
             <CartItem {...item} key={item.id} ref={checkboxRefs[idx]} />
           ))}
         </ul>
