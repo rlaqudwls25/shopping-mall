@@ -61,22 +61,28 @@ const CartItem = (
   }
   return (
     <div className="cart-item">
-      <input
-        className="cart-item-checkbox"
-        type="checkbox"
-        name="select-item"
-        ref={ref}
-        data-id={id}
-      />
+      <div style={{ padding: '5px 0px 15px 0px' }}>
+        <span>상품 선택</span>
+        <input
+          className="cart-item-checkbox"
+          type="checkbox"
+          name="select-item"
+          ref={ref}
+          data-id={id}
+        />
+      </div>
       <img src={imageUrl} />
-      <p>{title}</p>
-      <p>{price}</p>
-      <input
-        type="number"
-        value={amount}
-        min={0}
-        onChange={handleAmountCount}
-      ></input>
+      <p>상품 이름 : {title}</p>
+      <p>상품 가격 : {price}원</p>
+      <div style={{ display: 'flex' }}>
+        <span>상품 수량 : </span>
+        <input
+          type="number"
+          value={amount}
+          min={0}
+          onChange={handleAmountCount}
+        ></input>
+      </div>
       <button type="button" onClick={onDeleteCart}>
         삭제
       </button>

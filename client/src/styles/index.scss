@@ -2,33 +2,57 @@
 @import 'cart';
 @import 'payment';
 
-#root {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-body {
-  margin: 0;
-  a {
-    text-decoration: none;
-  }
-  a:visited {
-    color: black;
-  }
-
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav {
   ul {
-    list-style: none;
-    padding: 0;
-  }
-}
-
-.nav {
-  ul {
-    padding: 0;
-    list-style: none;
     display: flex;
     flex-direction: row;
     gap: 10px;
   }
+}
+section {
+  display: block;
+}
+
+input {
+  border: 0;
+  outline: 0;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+img {
+  width: 100%;
+  object-fit: cover;
+}
+a {
+  display: inline-block;
+  text-decoration: none;
+  &:visited,
+  &:link {
+    color: black;
+  }
+}
+ol,
+ul,
+li {
+  padding: 0;
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }

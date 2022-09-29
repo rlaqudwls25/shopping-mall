@@ -25,7 +25,7 @@ const cartResolver: Resolver = {
         }
         db.cart.splice(existCartIndex, 1, newCartItem)
         // console.log('db', db.cart.splice(existCartIndex, 1, newCartItem))
-        // setJSON(db.cart)
+        setJSON(db.cart)
         return newCartItem
       }
       const newItem = {
@@ -48,14 +48,14 @@ const cartResolver: Resolver = {
       }
 
       db.cart.splice(updateTarget, 1, newCartItem)
-      // setJSON(db.cart)
+      setJSON(db.cart)
       return newCartItem
     },
     deleteCart: (parent, { id }, { db }, info) => {
       const deleteTarget = db.cart.findIndex((item) => item.id === id)
 
       db.cart.splice(deleteTarget, 1)
-      // setJSON(db.cart)
+      setJSON(db.cart)
       return id
     },
     executePay: (parent, { ids }, { db }, info) => {
@@ -63,7 +63,7 @@ const cartResolver: Resolver = {
         (cartItem) => !ids.includes(cartItem.id)
       )
       db.cart = newCartData
-      // setJSON(db.cart)
+      setJSON(db.cart)
       return ids
     },
   },

@@ -36,8 +36,10 @@ const WillPayment = ({
           )
         })}
       </ul>
-      <div>전체 금액:{totalPrice}</div>
-      <button onClick={goNextStep}>{subTitle}</button>
+      <div className="payBox">
+        <span>전체 금액:{totalPrice}</span>
+        <button onClick={goNextStep}>{subTitle}</button>
+      </div>
     </div>
   )
 }

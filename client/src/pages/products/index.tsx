@@ -12,14 +12,12 @@ const ProductList = () => {
 
   return (
     <>
-      <div>
-        <h2>상품 목록</h2>
-        <ul className="products">
-          {data?.products?.map((product: Product) => (
-            <ProductItem {...product} key={product.id} />
-          ))}
-        </ul>
-      </div>
+      <h2>상품 목록</h2>
+      <ul className="products">
+        {data?.products?.map((product: Product) => (
+          <ProductItem {...product} key={product.id} />
+        ))}
+      </ul>
     </>
   )
 }

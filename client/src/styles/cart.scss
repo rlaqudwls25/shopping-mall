@@ -19,19 +19,21 @@
 .cart-payment {
   padding: 5px;
   border: 1px solid black;
-
   ul {
     display: flex;
     gap: 10px;
-    li {
-      padding: 5px;
-      border: 1px solid black;
-    }
   }
 
-  img {
-    width: 150px;
-    height: 100px;
-    object-fit: contain;
+  // img {
+  //   width: 150px;
+  //   height: 100px;
+  //   object-fit: contain;
+  // }
+
+  .payBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }
