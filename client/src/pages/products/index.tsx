@@ -1,39 +1,67 @@
-import React, { useEffect, useRef } from 'react'
-import { useInfiniteQuery, useQuery } from 'react-query'
+import React, { useEffect, useRef, useState } from 'react'
+import { useInfiniteQuery } from 'react-query'
 import ProductItem from '../../components/productsItem/productItem'
 import { graphqlFetcher, QueryKeys } from '../../queryClient'
 // import { METHOD, Product } from '../../types/types'
 import { GET_PRODUCTS, Product, Products } from '../graphql/products'
 
 const ProductList = () => {
-  const fetchMoreProduct = useRef<HTMLDivElement>(null)
-  const { data, error, isError, hasNextPage, fetchNextPage } =
-    useInfiniteQuery<Products>(
-      QueryKeys.PRODUCTS,
-      ({ pageParam = '' }) =>
-        graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
-      {
-        getNextPageParam: (res) => {
-          return res.products?.[res.products.length - 1]?.id
-        },
-      }
-    )
+  const fetchMoreProduct = useRef<HTMLDivElement>(null) // useRef를 통해 해당 div를 인식
+  const observeRef = useRef<IntersectionObserver>()
+
+  const [intersecting, setIntersecting] = useState<boolean>(false)
 
   useEffect(() => {
-    if (!data?.pages) return
-    console.log('data', data)
-  }, [])
+    getFetchPage()
+  }, [intersecting])
 
-  /**
-   * data : {
-   *   pages: [
-   * { products: [...]},
-   * { products: [...]},
-   * { products: [...]},
-   * ],
-   * pageParams: [undefiend, ...]
-   * }
-   */
+  useEffect(() => {
+    getObserve()
+  }, [fetchMoreProduct.current])
+
+  const {
+    data,
+    error,
+    isLoading,
+    isError,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage, // 다음 api요청을 하는 중 이라고 생각
+  } = useInfiniteQuery<Products>(
+    QueryKeys.PRODUCTS,
+    ({ pageParam = '' }) => graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
+    {
+      getNextPageParam: (res) => {
+        return res.products?.[res.products.length - 1]?.id
+      },
+    }
+  )
+
+  const getObserve = () => {
+    if (!fetchMoreProduct.current) {
+      return
+    }
+    getObserver().observe(fetchMoreProduct.current)
+  }
+
+  const getFetchPage = () => {
+    if (intersecting && hasNextPage) {
+      fetchNextPage()
+    }
+  }
+
+  const getObserver = () => {
+    if (!observeRef.current) {
+      observeRef.current = new IntersectionObserver((entries) => {
+        let isIntersect = entries.some((entry) => entry.isIntersecting)
+        setIntersecting(isIntersect)
+      })
+    }
+
+    return observeRef.current
+  }
+
+  if (isLoading) return <div>로딩중이에오</div>
 
   return (
     <>
