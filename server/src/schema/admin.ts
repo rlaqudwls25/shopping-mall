@@ -24,6 +24,8 @@ const adminSchema = gql`
       title: String
       description: String
     ): Product!
+
+    deleteProduct(id: ID!): ID!
   }
 `
 
