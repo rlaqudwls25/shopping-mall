@@ -2,9 +2,13 @@ import { Resolver } from './type'
 
 const productResolver: Resolver = {
   Query: {
-    products: (parent, { cursor = '' }, { db }) => {
-      const findIndex = db.products.findIndex((item) => item.id === cursor) + 1
-      return db.products.slice(findIndex, 10 + findIndex)
+    // 삭제한 상품은 admin에서 상품이 보여야하고 product에서는 상품이 보여지면 안된다.
+    products: (parent, { cursor = '', showDeleted = false }, { db }) => {
+      const filterDB = showDeleted
+        ? db.products
+        : db.products.filter((item) => !!item.createdAt)
+      const findIndex = filterDB.findIndex((item) => item.id === cursor) + 1
+      return filterDB.slice(findIndex, 10 + findIndex)
     },
     product: (parent, { id }, { db }) => {
       const found = db.products.find((item) => item.id === id)

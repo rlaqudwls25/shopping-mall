@@ -16,6 +16,6 @@
     "noEmit": false,
     "outDir": "dist"
   },
-  "include": ["src/**/*", "firebase.js"],
+  "include": ["src/**/*", "firebase.js", "tempdbbuilder.ts"],
   "exclude": ["node_modules"]
 }
