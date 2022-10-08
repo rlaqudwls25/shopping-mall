@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useInfiniteQuery } from 'react-query'
-import ProductItem from '../../components/productsItem/productItem'
+import ProductItem from '../../components/product/productItem'
+import ProductList from '../../components/product/productList'
 import { graphqlFetcher, QueryKeys } from '../../queryClient'
 // import { METHOD, Product } from '../../types/types'
 import { GET_PRODUCTS, Product, Products } from '../graphql/products'
 
-const ProductList = () => {
+const ProductPage = () => {
   const fetchMoreProduct = useRef<HTMLDivElement>(null) // useRef를 통해 해당 div를 인식
   const observeRef = useRef<IntersectionObserver>()
 
@@ -67,15 +68,11 @@ const ProductList = () => {
     <>
       <h2>상품 목록</h2>
       <ul className="products">
-        {data?.pages.map((list: { products: Product[] }) =>
-          list.products.map((product: Product) => (
-            <ProductItem {...product} key={product.id} />
-          ))
-        )}
+        <ProductList list={data?.pages || []} DiffItem={ProductItem} />
       </ul>
       <div ref={fetchMoreProduct} />
     </>
   )
 }
 
-export default ProductList
+export default ProductPage
