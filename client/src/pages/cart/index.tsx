@@ -12,6 +12,8 @@ const Cart = () => {
 
   const newData = (data?.cart || []) as CartType[]
 
+  console.log('newData', newData)
+
   if (!newData.length) return <div>장바구니가 비었습니다.</div>
 
   return (
