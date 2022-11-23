@@ -8,6 +8,7 @@ import Gnb from './components/gnb'
 const App = () => {
   const element = useRoutes(routes)
   const queryClient = getClient()
+  console.log(queryClient)
 
   return (
     <QueryClientProvider client={queryClient}>

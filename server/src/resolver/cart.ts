@@ -12,6 +12,13 @@ const cartResolver: Resolver = {
   Mutation: {
     addCart: (parent, { id }, { db }) => {
       if (!id) throw new Error('상품 ID가 없습니다.')
+
+      if (!db.cart.length) {
+        db.cart.push({
+          id: '1',
+          amount: 2,
+        })
+      }
       const targetProduct = db.products.find((item) => item.id === id)
       if (!targetProduct) {
         throw new Error('상품이 없습니다.')

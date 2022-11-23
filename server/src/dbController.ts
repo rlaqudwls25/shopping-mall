@@ -13,6 +13,7 @@ const filenames = {
 }
 
 export const readDB = (target: DBField) => {
+  console.log('target', target)
   try {
     return JSON.parse(fs.readFileSync(filenames[target], 'utf-8'))
   } catch (error) {

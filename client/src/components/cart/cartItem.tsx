@@ -1,6 +1,7 @@
 import React, { ForwardedRef, forwardRef, SyntheticEvent } from 'react'
-import { useMutation } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 import { CartType, DELETE_CART, UPDATE_CART } from '../../pages/graphql/cart'
+import { GET_PRODUCTS, Products } from '../../pages/graphql/products'
 import { getClient, graphqlFetcher, QueryKeys } from '../../queryClient'
 
 const CartItem = (
@@ -59,6 +60,7 @@ const CartItem = (
   const onDeleteCart = () => {
     deleteCart({ id })
   }
+
   return (
     <div className="cart-item">
       <div style={{ padding: '5px 0px 15px 0px' }}>

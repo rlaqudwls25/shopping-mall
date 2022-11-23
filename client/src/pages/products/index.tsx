@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useInfiniteQuery } from 'react-query'
+import { useInfiniteQuery, useQuery } from 'react-query'
 import ProductItem from '../../components/product/productItem'
 import ProductList from '../../components/product/productList'
 import { graphqlFetcher, QueryKeys } from '../../queryClient'
@@ -27,12 +27,14 @@ const ProductPage = () => {
     isError,
     hasNextPage,
     fetchNextPage,
+    isFetching,
     isFetchingNextPage, // 다음 api요청을 하는 중 이라고 생각
   } = useInfiniteQuery<Products>(
     QueryKeys.PRODUCTS,
     ({ pageParam = '' }) => graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
     {
       getNextPageParam: (res) => {
+        console.log('res', res)
         return res.products?.[res.products.length - 1]?.id
       },
     }
@@ -63,6 +65,8 @@ const ProductPage = () => {
   }
 
   if (isLoading) return <div>로딩중이에오</div>
+
+  console.log('data', data)
 
   return (
     <>
