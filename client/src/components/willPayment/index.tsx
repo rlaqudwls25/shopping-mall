@@ -13,7 +13,6 @@ const WillPayment = ({
 }) => {
   const checkedItems = useRecoilValue<CartType[]>(cartState)
 
-  console.log('checkedItems', checkedItems)
   const totalPrice = checkedItems.reduce(
     (result, { amount, product: { price } }) => (result += amount * price),
     0

@@ -31,7 +31,6 @@ const cartResolver: Resolver = {
           amount: db.cart[existCartIndex].amount + 1,
         }
         db.cart.splice(existCartIndex, 1, newCartItem)
-        // console.log('db', db.cart.splice(existCartIndex, 1, newCartItem))
         setJSON(db.cart)
         return newCartItem
       }

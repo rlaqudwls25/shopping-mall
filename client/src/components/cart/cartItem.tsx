@@ -1,5 +1,5 @@
 import React, { ForwardedRef, forwardRef, SyntheticEvent } from 'react'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation } from 'react-query'
 import { CartType, DELETE_CART, UPDATE_CART } from '../../pages/graphql/cart'
 import { GET_PRODUCTS, Products } from '../../pages/graphql/products'
 import { getClient, graphqlFetcher, QueryKeys } from '../../queryClient'
@@ -15,29 +15,33 @@ const CartItem = (
 
     {
       // 응답이 성공했을 때 값을 update 시켜준다.
-      onSuccess: ({ updateCart }) => {
-        // cartItem 하나에 대한 데이터 update
-        const { cart: prevCart } = queryClient.getQueryData<{
-          cart: CartType[]
-        }>(QueryKeys.CART) || { cart: [] }
-
-        const targetIndex = prevCart?.findIndex(
-          (item) => item.id === updateCart.id
+      onMutate: async ({ id, amount }) => {
+        await queryClient.cancelQueries(QueryKeys.CART)
+        // cartItem 하나에 대한 데이터 update}
+        const prevCart = queryClient.getQueryData<{ cart: CartType[] }>(
+          QueryKeys.CART
         )
+
+        const targetIndex = prevCart?.cart?.findIndex((item) => item.id === id)
 
         if (!prevCart || targetIndex === undefined || targetIndex < 0) return
 
-        const newCart = [...prevCart]
+        const newCart = [...prevCart.cart]
 
-        // const newCart = {
-        //   ...(prevCart || {}),
-        //   [id]: newValue,
-        // }
-
-        newCart.splice(targetIndex, 1, updateCart)
+        newCart.splice(targetIndex, 1, { ...newCart[targetIndex], amount })
 
         // cartItem 전체에 대한 데이터를 update
         queryClient.setQueryData(QueryKeys.CART, { cart: newCart })
+
+        return prevCart
+      },
+
+      onError: (error, context: any) => {
+        queryClient.setQueryData(QueryKeys.CART, context.prevCart)
+      },
+
+      onSettled: () => {
+        queryClient.invalidateQueries(QueryKeys.CART)
       },
     }
   )

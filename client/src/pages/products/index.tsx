@@ -34,7 +34,6 @@ const ProductPage = () => {
     ({ pageParam = '' }) => graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
     {
       getNextPageParam: (res) => {
-        console.log('res', res)
         return res.products?.[res.products.length - 1]?.id
       },
     }
@@ -65,8 +64,6 @@ const ProductPage = () => {
   }
 
   if (isLoading) return <div>로딩중이에오</div>
-
-  console.log('data', data)
 
   return (
     <>
