@@ -27,7 +27,7 @@ const AdminPage = () => {
     isError,
     hasNextPage,
     fetchNextPage,
-    isFetchingNextPage, // 다음 api요청을 하는 중 이라고 생각
+    isFetchingNextPage, // 다음 페이지가 있을 경우
   } = useInfiniteQuery<Products>(
     [QueryKeys.PRODUCTS, true],
     ({ pageParam = '' }) =>

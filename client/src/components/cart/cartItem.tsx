@@ -41,6 +41,7 @@ const CartItem = (
       },
 
       onSettled: () => {
+        // 일부러 stale 하게 해서 업데이트를 시켜준다
         queryClient.invalidateQueries(QueryKeys.CART)
       },
     }
