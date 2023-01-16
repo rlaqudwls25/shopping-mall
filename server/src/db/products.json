@@ -866,16 +866,16 @@
     "id": "99391bfb-1409-4fec-aed9-64652a23ac49",
     "imageUrl": "https://picsum.photos/id/98/200/150",
     "price": 12345,
-    "title": "상품명",
-    "description": "12324",
+    "title": "상품명23",
+    "description": "4321",
     "createdAt": 1673799687474
   },
   {
     "id": "31d29ddc-6268-4dd6-aab7-85da9aa0b505",
     "imageUrl": "https://picsum.photos/id/98/200/150",
-    "price": 123456,
-    "title": "상품명 2",
-    "description": "1231313",
+    "price": 3333333,
+    "title": "수정본",
+    "description": "수정한다",
     "createdAt": 1673840106411
   }
 ]
