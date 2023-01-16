@@ -2,42 +2,30 @@ import { SyntheticEvent } from 'react'
 import { useMutation } from 'react-query'
 import { ADD_PRODUCT } from '../../pages/graphql/admin'
 import { Product } from '../../pages/graphql/products'
-import { graphqlFetcher } from '../../queryClient'
+import { getClient, graphqlFetcher, QueryKeys } from '../../queryClient'
 import arrToobj from '../../util/arrToojb'
 
-type OmitProduct = Omit<Product, 'id' | 'createdAt'>
+// type OmitProduct = Omit<Product, 'id' | 'createdAt'>
+
+interface AdminProps {
+  title: string
+  imageUrl: string
+  price: number
+  description: string
+}
 
 const AddItem = () => {
+  const queryClient = getClient()
   const { mutate: addProduct } = useMutation(
-    ({ title, imageUrl, price, description }: OmitProduct) =>
-      graphqlFetcher(ADD_PRODUCT, { title, imageUrl, price, description })
-    // {
-    //   // 응답이 성공했을 때 값을 update 시켜준다.
-    //   onSuccess: ({ updateCart }) => {
-    //     // cartItem 하나에 대한 데이터 update
-    //     const { cart: prevCart } = queryClient.getQueryData<{
-    //       cart: CartType[]
-    //     }>(QueryKeys.CART) || { cart: [] }
-
-    //     const targetIndex = prevCart?.findIndex(
-    //       (item) => item.id === updateCart.id
-    //     )
-
-    //     if (!prevCart || targetIndex === undefined || targetIndex < 0) return
-
-    //     const newCart = [...prevCart]
-
-    //     // const newCart = {
-    //     //   ...(prevCart || {}),
-    //     //   [id]: newValue,
-    //     // }
-
-    //     newCart.splice(targetIndex, 1, updateCart)
-
-    //     // cartItem 전체에 대한 데이터를 update
-    //     queryClient.setQueryData(QueryKeys.CART, { cart: newCart })
-    //   },
-    // }
+    ({ title, imageUrl, price, description }: AdminProps) =>
+      graphqlFetcher(ADD_PRODUCT, { title, imageUrl, price, description }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(QueryKeys.PRODUCTS, {
+          refetchInactive: true,
+        })
+      },
+    }
   )
 
   const addAdminItem = (e: SyntheticEvent) => {
@@ -45,8 +33,9 @@ const AddItem = () => {
     const formData = arrToobj([...new FormData(e.target as HTMLFormElement)])
     formData.price = Number(formData.price)
     console.dir(formData)
-    addProduct(formData as OmitProduct)
+    addProduct(formData as AdminProps)
   }
+
   return (
     <form onSubmit={addAdminItem}>
       <label>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useInfiniteQuery } from 'react-query'
 import AddItem from '../../components/admin/addItem'
-import ProductItem from '../../components/product/productItem'
+import AdminItem from '../../components/admin/adminItem'
 import ProductList from '../../components/product/productList'
 import { graphqlFetcher, QueryKeys } from '../../queryClient'
 import { GET_PRODUCTS, Products } from '../graphql/products'
@@ -73,7 +73,7 @@ const AdminPage = () => {
       <h2>관리자 목록</h2>
       <AddItem />
       <ul className="products">
-        <ProductList list={data?.pages || []} DiffItem={ProductItem} />
+        <ProductList list={data?.pages || []} DiffItem={AdminItem} />
       </ul>
       <div ref={fetchMoreProduct} />
     </>

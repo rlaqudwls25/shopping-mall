@@ -6,7 +6,12 @@ const productResolver: Resolver = {
     products: (parent, { cursor = '', showDeleted = false }, { db }) => {
       const filterDB = showDeleted
         ? db.products
-        : db.products.filter((item) => !!item.createdAt)
+            .filter((product) => !!product.createdAt)
+            .sort((a, b) => b.createdAt! - a.createdAt!)
+        : db.products
+            .filter((product) => !!product.createdAt)
+            .sort((a, b) => b.createdAt! - a.createdAt!)
+
       const findIndex = filterDB.findIndex((item) => item.id === cursor) + 1
       return filterDB.slice(findIndex, 10 + findIndex)
     },

@@ -5,7 +5,14 @@ import { ADD_CART } from '../../pages/graphql/cart'
 import { Product } from '../../pages/graphql/products'
 import { graphqlFetcher } from '../../queryClient'
 
-const AdminItem = ({ description, imageUrl, price, title, id }: Product) => {
+const AdminItem = ({
+  description,
+  imageUrl,
+  price,
+  title,
+  id,
+  createdAt,
+}: Product) => {
   const { mutate: addCart } = useMutation((id: string) =>
     graphqlFetcher(ADD_CART, { id })
   )
@@ -19,7 +26,8 @@ const AdminItem = ({ description, imageUrl, price, title, id }: Product) => {
           <img src={imageUrl} />
           <span className="price">{price}원</span>
         </Link>
-        <button onClick={() => addCart(id)}>담기</button>
+        {!createdAt && <span>삭제된 상품</span>}
+        <button onClick={() => addCart(id)}>어드민</button>
       </li>
     </>
   )
