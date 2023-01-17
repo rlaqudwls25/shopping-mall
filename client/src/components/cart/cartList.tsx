@@ -29,6 +29,11 @@ const CartList = ({ items }: { items: CartType[] }) => {
     updateCheckedData()
   }, [items, formData])
 
+  console.log(
+    'items',
+    items.filter((item) => item.product.createdAt)
+  )
+
   useEffect(() => {
     checkedCartData.forEach((item) => {
       const isItem = checkboxRefs.find(
@@ -52,12 +57,18 @@ const CartList = ({ items }: { items: CartType[] }) => {
     if (targetInput && targetInput.classList.contains('select-all')) {
       // select-all 선택시
       const allChecked = targetInput.checked
-      checkboxRefs.forEach((inputEle) => {
-        inputEle.current!.checked = allChecked
-      })
+      checkboxRefs
+        .filter((item) => !item.current?.disabled)
+        .forEach((inputEle) => {
+          inputEle.current!.checked = allChecked
+        })
     } else {
       // 개별 아이템 선택시
-      const allChecked = data.getAll('select-item').length === items.length
+      const allChecked =
+        data.getAll('select-item').length ===
+        items.filter((item) => item.product.createdAt).length
+
+      console.log('allC', items.length)
       formRef.current.querySelector<HTMLInputElement>('.select-all')!.checked =
         allChecked
     }

@@ -843,39 +843,34 @@
     "imageUrl": "https://picsum.photos/id/98/200/150",
     "price": 12345,
     "title": "상품명1",
-    "description": "12345",
-    "createdAt": 1673798019658
+    "description": "12345"
   },
   {
     "id": "f48df083-8356-48bf-bd61-e3b22282b964",
     "imageUrl": "https://picsum.photos/id/98/200/150",
     "price": 44444,
     "title": "123451",
-    "description": "444444",
-    "createdAt": 1673798084010
+    "description": "444444"
   },
   {
     "id": "4b4b687c-3a3e-458e-b32c-839c888553ca",
     "imageUrl": "https://picsum.photos/id/98/200/150",
     "price": 112131,
     "title": "1212314124",
-    "description": "121213",
-    "createdAt": 1673798719836
+    "description": "121213"
   },
   {
     "id": "99391bfb-1409-4fec-aed9-64652a23ac49",
     "imageUrl": "https://picsum.photos/id/98/200/150",
     "price": 12345,
     "title": "상품명23",
-    "description": "4321",
-    "createdAt": 1673799687474
+    "description": "4321"
   },
   {
     "id": "31d29ddc-6268-4dd6-aab7-85da9aa0b505",
     "imageUrl": "https://picsum.photos/id/98/200/150",
     "price": 3333333,
     "title": "수정본",
-    "description": "수정한다",
-    "createdAt": 1673840106411
+    "description": "수정한다"
   }
 ]

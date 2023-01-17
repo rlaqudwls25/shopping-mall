@@ -5,7 +5,7 @@ import { GET_PRODUCTS, Products } from '../../pages/graphql/products'
 import { getClient, graphqlFetcher, QueryKeys } from '../../queryClient'
 
 const CartItem = (
-  { id, amount, product: { imageUrl, price, title } }: CartType,
+  { id, amount, product: { imageUrl, price, title, createdAt } }: CartType,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const queryClient = getClient()
@@ -76,6 +76,7 @@ const CartItem = (
           name="select-item"
           ref={ref}
           data-id={id}
+          disabled={!createdAt}
         />
       </div>
       <img src={imageUrl} />
@@ -90,9 +91,13 @@ const CartItem = (
           onChange={handleAmountCount}
         ></input>
       </div>
-      <button type="button" onClick={onDeleteCart}>
-        삭제
-      </button>
+      {createdAt ? (
+        <button type="button" onClick={onDeleteCart}>
+          삭제
+        </button>
+      ) : (
+        <>삭제된 상품입니다.</>
+      )}
     </div>
   )
 }

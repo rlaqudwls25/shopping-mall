@@ -1,10 +1,12 @@
 import React, { SyntheticEvent, useState } from 'react'
 import { useMutation } from 'react-query'
 import { Link } from 'react-router-dom'
-import { UPDATE_PRODUCT } from '../../pages/graphql/admin'
+import { useRecoilValue } from 'recoil'
+import { DELETE_PRODUCT, UPDATE_PRODUCT } from '../../pages/graphql/admin'
 import { ADD_CART } from '../../pages/graphql/cart'
 import { Product } from '../../pages/graphql/products'
 import { getClient, graphqlFetcher, QueryKeys } from '../../queryClient'
+import { adminEditState } from '../../recoils/admin'
 import arrToobj from '../../util/arrToojb'
 
 const AdminItem = ({
@@ -23,8 +25,9 @@ const AdminItem = ({
   doneEdit: () => void
 }) => {
   const queryClient = getClient()
+
   const { mutate: updateProduct } = useMutation(
-    ({ title, imageUrl, price, description }: any) =>
+    ({ title, imageUrl, price, description }: Product) =>
       graphqlFetcher(UPDATE_PRODUCT, {
         id,
         title,
@@ -42,12 +45,27 @@ const AdminItem = ({
     }
   )
 
+  const { mutate: deleteProduct } = useMutation(
+    ({ id }: { id: string }) => graphqlFetcher(DELETE_PRODUCT, { id }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(QueryKeys.PRODUCTS, {
+          refetchInactive: true,
+        })
+      },
+    }
+  )
+
   const updateAdminItem = (e: SyntheticEvent) => {
     e.preventDefault()
     const formData = arrToobj([...new FormData(e.target as HTMLFormElement)])
     formData.price = Number(formData.price)
     console.dir(formData)
     updateProduct(formData as any)
+  }
+
+  const deleteAdminItem = () => {
+    deleteProduct({ id })
   }
 
   return (
@@ -62,6 +80,7 @@ const AdminItem = ({
           </Link>
           {!createdAt && <span>삭제된 상품</span>}
           <button onClick={startEdit}>수정</button>
+          <button onClick={deleteAdminItem}>삭제</button>
         </li>
       ) : (
         <>

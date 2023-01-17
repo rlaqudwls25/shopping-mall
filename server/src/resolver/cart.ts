@@ -68,6 +68,7 @@ const cartResolver: Resolver = {
       const newCartData = db.cart.filter(
         (cartItem) => !ids.includes(cartItem.id)
       )
+
       db.cart = newCartData
       setJSON(db.cart)
       return ids
