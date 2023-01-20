@@ -4,10 +4,12 @@ import { getClient } from './queryClient'
 import { routes } from './routes'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import Gnb from './components/gnb'
-  
+
 const App = () => {
   const element = useRoutes(routes)
   const queryClient = getClient()
+
+  console.log('queryClient', queryClient)
 
   return (
     <QueryClientProvider client={queryClient}>

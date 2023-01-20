@@ -23,11 +23,11 @@ import { DBField, readDB } from './dbController'
     cors: {
       origin: [
         'https://studio.apollographql.com',
-        'http://localhost:5173',
-        'http://localhost:3000',
         'http://127.0.0.1:5173',
-        'https://shopping-mall-client.vercel.app/',
-        'shopping-mall-client.vercel.app/',
+        'http://jin-shop.link:8000/',
+        // 'http://localhost:5173',
+        // 'https://shopping-mall-client.vercel.app/',
+        // 'shopping-mall-client.vercel.app/',
       ],
       credentials: true,
     },
