@@ -18,16 +18,12 @@ import { DBField, readDB } from './dbController'
 
   const app = express()
 
-  app.get('/', (req, res) => {
-    res.send('hello world')
-  })
-
   await server.start()
   server.applyMiddleware({
     app,
     path: '/graphql',
     cors: {
-      origin: '*',
+      origin: 'https://api.jin-shop.link/graphql',
       credentials: true,
     },
   })
