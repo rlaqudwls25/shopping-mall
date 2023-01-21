@@ -28,6 +28,7 @@ import { DBField, readDB } from './dbController'
         'https://studio.apollographql.com',
         'https://api.jin-shop.link:443',
         'https://api.jin-shop.link:8000',
+        'https://jin-shop.link/',
       ],
       credentials: true,
     },
