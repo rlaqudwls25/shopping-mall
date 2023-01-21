@@ -16,6 +16,11 @@ import { DBField, readDB } from './dbController'
   })
 
   const app = express()
+
+  app.get('/', (req, res) => {
+    res.send('hello world')
+  })
+
   await server.start()
   server.applyMiddleware({
     app,
@@ -32,6 +37,7 @@ import { DBField, readDB } from './dbController'
       credentials: true,
     },
   })
+
   await app.listen({ port: 8000 })
   console.log('sever listening on 8000')
 })()
