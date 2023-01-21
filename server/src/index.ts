@@ -30,6 +30,7 @@ import { DBField, readDB } from './dbController'
         'https://studio.apollographql.com',
         'http://127.0.0.1:5173',
         'http://jin-shop.link:8000/',
+        'https://shopping-mall-client.vercel.app/',
         // 'http://localhost:5173',
         // 'https://shopping-mall-client.vercel.app/',
         // 'shopping-mall-client.vercel.app/',
