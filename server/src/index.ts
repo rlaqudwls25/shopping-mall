@@ -7,6 +7,7 @@ import { DBField, readDB } from './dbController'
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
+    csrfPrevention: true,
     context: {
       db: {
         products: readDB(DBField.PRODUCTS),
