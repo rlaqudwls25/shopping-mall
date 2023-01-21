@@ -24,7 +24,7 @@ export const getClient = () => {
 
 // axios.defaults.baseURL = 'https://fakestoreapi.com'
 
-const URL = 'https://api.jin-shop.link:443/graphql'
+const URL = 'https://api.jin-shop.link/graphql'
 
 // export const fetcher = async (
 //   method: METHOD,
