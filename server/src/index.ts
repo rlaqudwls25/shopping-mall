@@ -31,6 +31,7 @@ import { DBField, readDB } from './dbController'
         'http://127.0.0.1:5173',
         'http://jin-shop.link:8000/',
         'https://shopping-mall-client.vercel.app/',
+        'https://api.jin-shop.link/graphql',
         // 'http://localhost:5173',
         // 'https://shopping-mall-client.vercel.app/',
         // 'shopping-mall-client.vercel.app/',
