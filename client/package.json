@@ -4,12 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "cross-env": "^7.0.3",
+    "env-cmd": "^10.1.0",
     "graphql-request": "^5.0.0",
     "graphql-tag": "^2.12.6",
     "react": "^17.0.2",

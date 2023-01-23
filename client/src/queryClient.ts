@@ -22,18 +22,8 @@ export const getClient = () => {
   return client
 }
 
-// axios.defaults.baseURL = 'https://fakestoreapi.com'
-
-const URL = 'https://api.jin-shop.link/graphql'
-
-// export const fetcher = async (
-//   method: METHOD,
-//   url: string,
-//   ...rest: { [key: string]: any }[]
-// ) => {
-//   const res = await axios[method](url, ...rest)
-//   return res.data
-// }
+// const URL = 'https://api.jin-shop.link/graphql'
+const URL = 'http://localhost:8000/graphql'
 
 export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
   request(URL, query, variables)
