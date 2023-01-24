@@ -1,13 +1,6 @@
-import { atom, DefaultValue, selector } from 'recoil'
+import { atom } from 'recoil'
 
-export const adminEditState = atom<any>({
+export const adminEditState = atom<null | string>({
   key: 'adminEditState',
-  default: false,
+  default: null,
 })
-
-// export const handleEditAdminState = selector({
-//   key: 'handleEditAdminState',
-//   get: ({ get }) => get(adminEditState),
-//   set: ({ set }, newValue) =>
-//     set(adminEditState, newValue instanceof DefaultValue && !newValue),
-// })

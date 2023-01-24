@@ -79,12 +79,7 @@ const Admin = () => {
       <h2>관리자 목록</h2>
       <AddItem />
       <ul className="products">
-        <AdminList
-          list={data?.pages || []}
-          startEdit={startEdit}
-          editIndex={editIndex}
-          doneEdit={doneEdit}
-        />
+        <AdminList list={data?.pages || []} />
       </ul>
       x
       <div ref={fetchMoreProduct} />

@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react'
 import { useMutation } from 'react-query'
 import { Link } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { DELETE_PRODUCT, UPDATE_PRODUCT } from '../../pages/graphql/admin'
 import { ADD_CART } from '../../pages/graphql/cart'
 import { Product } from '../../pages/graphql/products'
@@ -16,15 +16,14 @@ const AdminItem = ({
   title,
   id,
   createdAt,
-  isEdit,
-  startEdit,
-  doneEdit,
-}: Product & {
-  isEdit: boolean
-  startEdit: () => void
-  doneEdit: () => void
-}) => {
+}: Product) => {
   const queryClient = getClient()
+  const [itemIndex, setItemIndex] = useRecoilState(adminEditState)
+  const isEdit = id === itemIndex
+
+  const abc = () => {
+    setItemIndex(id)
+  }
 
   const { mutate: updateProduct } = useMutation(
     ({ title, imageUrl, price, description }: Product) =>
@@ -40,7 +39,7 @@ const AdminItem = ({
         queryClient.invalidateQueries(QueryKeys.PRODUCTS, {
           refetchInactive: true,
         })
-        doneEdit()
+        setItemIndex(null)
       },
     }
   )
@@ -60,7 +59,6 @@ const AdminItem = ({
     e.preventDefault()
     const formData = arrToobj([...new FormData(e.target as HTMLFormElement)])
     formData.price = Number(formData.price)
-    console.dir(formData)
     updateProduct(formData as any)
   }
 
@@ -79,7 +77,7 @@ const AdminItem = ({
             <span className="price">{price}원</span>
           </Link>
           {!createdAt && <span>삭제된 상품</span>}
-          <button onClick={startEdit}>수정</button>
+          <button onClick={abc}>수정</button>
           <button onClick={deleteAdminItem}>삭제</button>
         </li>
       ) : (
