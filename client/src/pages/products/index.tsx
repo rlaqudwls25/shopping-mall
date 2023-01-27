@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useInfiniteQuery, useQuery } from 'react-query'
 import ProductItem from '../../components/product/productItem'
 import ProductList from '../../components/product/productList'
+import useGetProduct from '../../hook/useGetProduct'
 import { graphqlFetcher, QueryKeys } from '../../queryClient'
 // import { METHOD, Product } from '../../types/types'
 import { GET_PRODUCTS, Product, Products } from '../graphql/products'
@@ -12,6 +13,8 @@ const ProductPage = () => {
 
   const [intersecting, setIntersecting] = useState<boolean>(false)
 
+  const { data, isLoading, hasNextPage, fetchNextPage } = useGetProduct()
+
   useEffect(() => {
     getFetchPage()
   }, [intersecting])
@@ -19,25 +22,6 @@ const ProductPage = () => {
   useEffect(() => {
     getObserve()
   }, [fetchMoreProduct.current])
-
-  const {
-    data,
-    error,
-    isLoading,
-    isError,
-    hasNextPage,
-    fetchNextPage,
-    isFetching,
-    isFetchingNextPage, // 다음 api요청을 하는 중 이라고 생각
-  } = useInfiniteQuery<Products>(
-    QueryKeys.PRODUCTS,
-    ({ pageParam = '' }) => graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
-    {
-      getNextPageParam: (res) => {
-        return res.products?.[res.products.length - 1]?.id
-      },
-    }
-  )
 
   const getObserve = () => {
     if (!fetchMoreProduct.current) {

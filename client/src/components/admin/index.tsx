@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useInfiniteQuery } from 'react-query'
-import { GET_PRODUCTS, Products } from '../../pages/graphql/products'
-import { graphqlFetcher, QueryKeys } from '../../queryClient'
+import useGetProduct from '../../hook/useGetProduct'
 import AddItem from './addItem'
 import AdminList from './adminList'
 
@@ -10,7 +8,8 @@ const Admin = () => {
   const observeRef = useRef<IntersectionObserver>()
 
   const [intersecting, setIntersecting] = useState<boolean>(false)
-  const [editIndex, setEditIndex] = useState<number | null>(null)
+
+  const { data, isLoading, hasNextPage, fetchNextPage } = useGetProduct()
 
   useEffect(() => {
     getFetchPage()
@@ -19,28 +18,6 @@ const Admin = () => {
   useEffect(() => {
     getObserve()
   }, [fetchMoreProduct.current])
-
-  const {
-    data,
-    error,
-    isLoading,
-    isError,
-    hasNextPage,
-    fetchNextPage,
-    isFetchingNextPage, // 다음 페이지가 있을 경우
-  } = useInfiniteQuery<Products>(
-    [QueryKeys.PRODUCTS, true],
-    ({ pageParam = '' }) =>
-      graphqlFetcher(GET_PRODUCTS, {
-        cursor: pageParam,
-        showDeleted: true,
-      }),
-    {
-      getNextPageParam: (res) => {
-        return res.products?.[res.products.length - 1]?.id
-      },
-    }
-  )
 
   const getObserve = () => {
     if (!fetchMoreProduct.current) {
@@ -68,12 +45,6 @@ const Admin = () => {
 
   if (isLoading) return <div>로딩중이에오</div>
 
-  const startEdit = (index: number) => () => {
-    setEditIndex(index)
-  }
-
-  const doneEdit = () => setEditIndex(null)
-
   return (
     <>
       <h2>관리자 목록</h2>
@@ -81,7 +52,6 @@ const Admin = () => {
       <ul className="products">
         <AdminList list={data?.pages || []} />
       </ul>
-      x
       <div ref={fetchMoreProduct} />
     </>
   )

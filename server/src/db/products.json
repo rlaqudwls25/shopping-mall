@@ -861,5 +861,29 @@
     "price": 3333333,
     "title": "수정본",
     "description": "수정한다"
+  },
+  {
+    "id": "e4be9a7a-7295-44cc-b308-51ade5e17fb0",
+    "imageUrl": "https://ohou.se/productions/25710/selling?affect_type=StoreHomeDeal&affect_id=2",
+    "price": 1233,
+    "title": "상품명",
+    "description": "설명",
+    "createdAt": 1674632046221
+  },
+  {
+    "id": "d334f240-6e0f-4ed1-88bb-553dc47c1137",
+    "imageUrl": "https://ohou.se/productions/25710/selling?affect_type=StoreHomeDeal&affect_id=2",
+    "price": 1233,
+    "title": "상품명",
+    "description": "설명",
+    "createdAt": 1674632084839
+  },
+  {
+    "id": "2b3994b8-666d-4c80-a437-db597c8d8aa5",
+    "imageUrl": "https://picsum.photos/id/98/200/150",
+    "price": 111111,
+    "title": "aaa",
+    "description": "111111",
+    "createdAt": 1674632870641
   }
 ]
