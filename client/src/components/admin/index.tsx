@@ -1,46 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import useGetProduct from '../../hook/useGetProduct'
+import useInfiniteScroll from '../../hook/useInfiniteScroll'
 import AddItem from './addItem'
 import AdminList from './adminList'
 
 const Admin = () => {
   const fetchMoreProduct = useRef<HTMLDivElement>(null) // useRef를 통해 해당 div를 인식
-  const observeRef = useRef<IntersectionObserver>()
 
-  const [intersecting, setIntersecting] = useState<boolean>(false)
+  const isIntersecting = useInfiniteScroll(fetchMoreProduct)
 
   const { data, isLoading, hasNextPage, fetchNextPage } = useGetProduct()
 
   useEffect(() => {
     getFetchPage()
-  }, [intersecting])
-
-  useEffect(() => {
-    getObserve()
-  }, [fetchMoreProduct.current])
-
-  const getObserve = () => {
-    if (!fetchMoreProduct.current) {
-      return
-    }
-    getObserver().observe(fetchMoreProduct.current)
-  }
+  }, [isIntersecting])
 
   const getFetchPage = () => {
-    if (intersecting && hasNextPage) {
+    if (isIntersecting && hasNextPage) {
       fetchNextPage()
     }
-  }
-
-  const getObserver = () => {
-    if (!observeRef.current) {
-      observeRef.current = new IntersectionObserver((entries) => {
-        let isIntersect = entries.some((entry) => entry.isIntersecting)
-        setIntersecting(isIntersect)
-      })
-    }
-
-    return observeRef.current
   }
 
   if (isLoading) return <div>로딩중이에오</div>
