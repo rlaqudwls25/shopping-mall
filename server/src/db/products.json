@@ -897,8 +897,7 @@
     "imageUrl": "https://picsum.photos/id/98/200/150",
     "price": 333333,
     "title": "333",
-    "description": "33333",
-    "createdAt": 1674908082724
+    "description": "33333"
   },
   {
     "id": "59d6a3be-4523-49d6-85bd-1170dc5cde4a",
@@ -912,7 +911,6 @@
     "imageUrl": "https://picsum.photos/id/98/200/150",
     "price": 11111111,
     "title": "sdsdsds",
-    "description": "sadasdadasd",
-    "createdAt": 1674909059146
+    "description": "sadasdadasd"
   }
 ]

@@ -1,0 +1,13 @@
+.main_container {
+  position: relative;
+  .main_box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    span {
+      font-size: 40px;
+      font-family: 'Lobster', cursive;
+    }
+  }
+}

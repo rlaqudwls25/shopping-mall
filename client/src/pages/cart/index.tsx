@@ -1,5 +1,4 @@
 import CartItem from '../../components/cart/cartList'
-import { CartType, GET_CART } from '../graphql/cart'
 import useGetCartData from '../../hook/useGetCartData'
 
 const Cart = () => {

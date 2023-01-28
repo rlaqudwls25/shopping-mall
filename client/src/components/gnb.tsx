@@ -1,23 +1,23 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import { navData } from './constants/data'
 
 const Gnb = () => {
   return (
-    <nav className="nav">
-      <ul>
-        <li>
-          <Link to="/">홈</Link>
-        </li>
-        <li>
-          <Link to="/products">상품목록</Link>
-        </li>
-        <li>
-          <Link to="/cart">장바구니</Link>
-        </li>
-        <li>
-          <Link to="/admin">관리자</Link>
-        </li>
-      </ul>
+    <nav className="nav_container">
+      <div className="nav_wrapper">
+        <ul>
+          {navData.map((item) => {
+            const { id, src, name } = item
+            return (
+              <li key={id}>
+                <Link to={src}>
+                  <span>{name}</span>
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </nav>
   )
 }

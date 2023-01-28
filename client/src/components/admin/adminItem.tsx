@@ -1,5 +1,5 @@
 import React, { SyntheticEvent } from 'react'
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import { Link } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { DELETE_PRODUCT, UPDATE_PRODUCT } from '../../pages/graphql/admin'
@@ -16,7 +16,7 @@ const AdminItem = ({
   id,
   createdAt,
 }: Product) => {
-  const queryClient = getClient()
+  const queryClient = useQueryClient()
 
   const [itemIndex, setItemIndex] = useRecoilState(adminEditState)
   const isEdit = id === itemIndex

@@ -1,8 +1,7 @@
 import { SyntheticEvent } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { ADD_PRODUCT } from '../../pages/graphql/admin'
-import { Product } from '../../pages/graphql/products'
-import { getClient, graphqlFetcher, QueryKeys } from '../../queryClient'
+import { graphqlFetcher, QueryKeys } from '../../queryClient'
 import arrToobj from '../../util/arrToojb'
 
 // type OmitProduct = Omit<Product, 'id' | 'createdAt'>
