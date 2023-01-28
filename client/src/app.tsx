@@ -9,8 +9,6 @@ const App = () => {
   const element = useRoutes(routes)
   const queryClient = getClient()
 
-  console.log('queryClient', queryClient)
-
   return (
     <QueryClientProvider client={queryClient}>
       <Gnb />

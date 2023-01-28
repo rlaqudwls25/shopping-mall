@@ -1,14 +1,13 @@
 import React, { ForwardedRef, forwardRef, SyntheticEvent } from 'react'
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import { CartType, DELETE_CART, UPDATE_CART } from '../../pages/graphql/cart'
-import { GET_PRODUCTS, Products } from '../../pages/graphql/products'
-import { getClient, graphqlFetcher, QueryKeys } from '../../queryClient'
+import { graphqlFetcher, QueryKeys } from '../../queryClient'
 
 const CartItem = (
   { id, amount, product: { imageUrl, price, title, createdAt } }: CartType,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
-  const queryClient = getClient()
+  const queryClient = useQueryClient()
   const { mutate: updateCart } = useMutation(
     ({ id, amount }: { id: string; amount: number }) =>
       graphqlFetcher(UPDATE_CART, { id, amount }),

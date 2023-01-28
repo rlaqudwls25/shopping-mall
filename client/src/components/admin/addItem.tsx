@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react'
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import { ADD_PRODUCT } from '../../pages/graphql/admin'
 import { Product } from '../../pages/graphql/products'
 import { getClient, graphqlFetcher, QueryKeys } from '../../queryClient'
@@ -15,7 +15,8 @@ interface AdminProps {
 }
 
 const AddItem = () => {
-  const queryClient = getClient()
+  const queryClient = useQueryClient()
+
   const { mutate: addProduct } = useMutation(
     ({ title, imageUrl, price, description }: AdminProps) =>
       graphqlFetcher(ADD_PRODUCT, { title, imageUrl, price, description }),

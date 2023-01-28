@@ -17,6 +17,7 @@ const AdminItem = ({
   createdAt,
 }: Product) => {
   const queryClient = getClient()
+
   const [itemIndex, setItemIndex] = useRecoilState(adminEditState)
   const isEdit = id === itemIndex
 
