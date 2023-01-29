@@ -866,16 +866,14 @@
     "imageUrl": "https://ohou.se/productions/25710/selling?affect_type=StoreHomeDeal&affect_id=2",
     "price": 1233,
     "title": "상품명",
-    "description": "설명",
-    "createdAt": 1674632046221
+    "description": "설명"
   },
   {
     "id": "d334f240-6e0f-4ed1-88bb-553dc47c1137",
     "imageUrl": "https://ohou.se/productions/25710/selling?affect_type=StoreHomeDeal&affect_id=2",
     "price": 1233,
     "title": "상품명",
-    "description": "설명",
-    "createdAt": 1674632084839
+    "description": "설명"
   },
   {
     "id": "2b3994b8-666d-4c80-a437-db597c8d8aa5",
@@ -889,8 +887,7 @@
     "imageUrl": "https://picsum.photos/id/98/200/150",
     "price": 444444,
     "title": "상품100",
-    "description": "2222",
-    "createdAt": 1674907975626
+    "description": "2222"
   },
   {
     "id": "5e03009a-13d9-43f7-8ab7-64b97a4df42b",
@@ -912,5 +909,12 @@
     "price": 11111111,
     "title": "sdsdsds",
     "description": "sadasdadasd"
+  },
+  {
+    "id": "b943c5e2-b87c-4838-afc3-681fd0f94873",
+    "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/9a07b588-f329-4120-8223-8ba5c8e44687.jpg",
+    "price": 40000,
+    "title": "식용유",
+    "description": "식용유 사주세요."
   }
 ]

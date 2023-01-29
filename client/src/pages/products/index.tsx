@@ -21,13 +21,17 @@ const ProductPage = () => {
   }
 
   return (
-    <>
-      <h2>상품 목록</h2>
-      <ul className="products">
-        <ProductList list={data?.pages || []} DiffItem={ProductItem} />
-      </ul>
-      <div ref={fetchMoreProduct} />
-    </>
+    <section>
+      <div className="productList_container">
+        <div className="productList_title_box">
+          <span className="productList_title">오늘의 상품</span>
+        </div>
+        <ul className="products">
+          <ProductList list={data?.pages || []} DiffItem={ProductItem} />
+        </ul>
+        <div ref={fetchMoreProduct} />
+      </div>
+    </section>
   )
 }
 

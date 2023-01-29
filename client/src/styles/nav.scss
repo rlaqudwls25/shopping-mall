@@ -1,13 +1,17 @@
 .nav_container {
   position: relative;
+  height: 80px;
   .nav_wrapper {
+    position: fixed;
+    width: 100%;
+    background: white;
     border: 1px solid #d8dde0;
     ul {
       display: flex;
       align-items: center;
       height: 80px;
       li {
-        margin: 0px 30px;
+        margin: 0px 50px;
         span {
           font-weight: bold;
           font-size: 20px;

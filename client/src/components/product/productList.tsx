@@ -13,7 +13,6 @@ const ProductList = ({
     id,
   }: Product) => JSX.Element
 }) => {
-  console.log('list', list)
   return (
     <>
       {list.map((item) =>
