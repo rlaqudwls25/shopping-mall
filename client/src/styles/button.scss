@@ -2,8 +2,12 @@
   width: 40px;
   height: 25px;
   border-radius: 10px;
+  cursor: pointer;
   &.add {
     background-color: #a8abb4;
+    &:hover {
+      background-color: black;
+    }
   }
 
   &.update {

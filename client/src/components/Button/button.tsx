@@ -9,7 +9,6 @@ interface ButtonProps {
 const Button = (props: ButtonProps) => {
   const { children, onClick, className } = props
 
-  console.log(className)
   return (
     <button onClick={onClick} className={className}>
       <span>{children}</span>

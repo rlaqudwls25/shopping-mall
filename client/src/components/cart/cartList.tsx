@@ -29,11 +29,6 @@ const CartList = ({ items }: { items: CartType[] }) => {
     updateCheckedData()
   }, [items, formData])
 
-  console.log(
-    'items',
-    items.filter((item) => item.product.createdAt)
-  )
-
   useEffect(() => {
     checkedCartData.forEach((item) => {
       const isItem = checkboxRefs.find(
@@ -68,7 +63,6 @@ const CartList = ({ items }: { items: CartType[] }) => {
         data.getAll('select-item').length ===
         items.filter((item) => item.product.createdAt).length
 
-      console.log('allC', items.length)
       formRef.current.querySelector<HTMLInputElement>('.select-all')!.checked =
         allChecked
     }

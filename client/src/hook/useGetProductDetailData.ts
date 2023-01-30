@@ -13,12 +13,11 @@ import { graphqlFetcher, QueryKeys } from '../queryClient'
 const useGetProductDetailData = () => {
   const { id } = useParams()
 
-  console.log('id', id)
   const { data } = useQuery([QueryKeys.PRODUCTS, id], () =>
     graphqlFetcher(GET_PRODUCT, { id })
   )
 
-  return { data }
+  return { data, id }
 }
 
 export default useGetProductDetailData
