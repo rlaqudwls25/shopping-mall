@@ -100,20 +100,22 @@ const CartList = ({ items }: { items: CartType[] }) => {
   }
 
   return (
-    <>
-      <form ref={formRef} onChange={handleCheckBoxChanged}>
-        <label>
-          전체선택
-          <input className="select-all" name="select-all" type="checkbox" />
-        </label>
-        <ul className="cart">
-          {items?.map((item, idx) => (
-            <CartItem {...item} key={item.id} ref={checkboxRefs[idx]} />
-          ))}
-        </ul>
-      </form>
-      <WillPayment subTitle="결제창으로 가기" goNextStep={goNextStep} />
-    </>
+    <div className="cart_container">
+      <div className="cart_sapce">
+        <form ref={formRef} onChange={handleCheckBoxChanged}>
+          <label>
+            전체선택
+            <input className="select-all" name="select-all" type="checkbox" />
+          </label>
+          <ul className="cart">
+            {items?.map((item, idx) => (
+              <CartItem {...item} key={item.id} ref={checkboxRefs[idx]} />
+            ))}
+          </ul>
+        </form>
+        <WillPayment subTitle="결제창으로 가기" goNextStep={goNextStep} />
+      </div>
+    </div>
   )
 }
 

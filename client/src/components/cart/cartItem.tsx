@@ -66,7 +66,7 @@ const CartItem = (
   }
 
   return (
-    <div className="cart-item">
+    <div className="cart_item">
       <div style={{ padding: '5px 0px 15px 0px' }}>
         <span>상품 선택</span>
         <input
@@ -88,6 +88,7 @@ const CartItem = (
           value={amount}
           min={0}
           onChange={handleAmountCount}
+          disabled={!createdAt}
         ></input>
       </div>
       {createdAt ? (

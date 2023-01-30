@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
@@ -38,7 +38,7 @@ const Payment = () => {
     setToggleModal(false)
   }
   return (
-    <div>
+    <div className="cart_container">
       <WillPayment subTitle="결제하기" goNextStep={showModal} />
       <PaymentModal show={toggleModal} proceed={proceed} cancel={cancel} />
     </div>

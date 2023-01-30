@@ -1,5 +1,5 @@
 .button {
-  width: 40px;
+  width: 100%;
   height: 25px;
   border-radius: 10px;
   cursor: pointer;
@@ -16,6 +16,16 @@
 
   &.delete {
     background-color: #ff0019;
+  }
+
+  &.next {
+    width: 50%;
+    height: 50px;
+    background-color: black;
+    span {
+      font-family: 'Nanum Gothic', sans-serif;
+      font-size: 16px;
+    }
   }
 
   span {
