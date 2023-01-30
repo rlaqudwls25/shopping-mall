@@ -1,0 +1,23 @@
+.button {
+  width: 40px;
+  height: 25px;
+  border-radius: 10px;
+  &.add {
+    background-color: #a8abb4;
+  }
+
+  &.update {
+    background-color: #1b4ecf;
+  }
+
+  &.delete {
+    background-color: #ff0019;
+  }
+
+  span {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(245, 243, 243);
+  }
+}

@@ -23,13 +23,15 @@ const ProductPage = () => {
   return (
     <section>
       <div className="productList_container">
-        <div className="productList_title_box">
-          <span className="productList_title">오늘의 상품</span>
+        <div className="productList_wrapper">
+          <div className="productList_title_box">
+            <span className="productList_title">오늘의 상품</span>
+          </div>
+          <ul className="products">
+            <ProductList list={data?.pages || []} DiffItem={ProductItem} />
+          </ul>
+          <div ref={fetchMoreProduct} />
         </div>
-        <ul className="products">
-          <ProductList list={data?.pages || []} DiffItem={ProductItem} />
-        </ul>
-        <div ref={fetchMoreProduct} />
       </div>
     </section>
   )

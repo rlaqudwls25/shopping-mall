@@ -1,8 +1,10 @@
 import { useMutation } from 'react-query'
 import { Link } from 'react-router-dom'
+import { ButtonStyle } from '../../enum'
 import { ADD_CART } from '../../pages/graphql/cart'
 import { Product } from '../../pages/graphql/products'
 import { graphqlFetcher } from '../../queryClient'
+import Button from '../Button/button'
 
 const ProductItem = ({ description, imageUrl, price, title, id }: Product) => {
   const { mutate: addCart } = useMutation((id: string) =>
@@ -20,7 +22,9 @@ const ProductItem = ({ description, imageUrl, price, title, id }: Product) => {
         <span className="item_price">{price} 원</span>
       </div>
       <div>
-        <button onClick={() => addCart(id)}>담기</button>
+        <Button className={`${ButtonStyle.ADD}`} onClick={() => addCart(id)}>
+          담기
+        </Button>
       </div>
     </li>
   )

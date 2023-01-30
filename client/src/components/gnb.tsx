@@ -5,18 +5,20 @@ const Gnb = () => {
   return (
     <nav className="nav_container">
       <div className="nav_wrapper">
-        <ul>
-          {navData.map((item) => {
-            const { id, src, name } = item
-            return (
-              <li key={id}>
-                <Link to={src}>
-                  <span>{name}</span>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+        <div className="nav_space">
+          <ul>
+            {navData.map((item) => {
+              const { id, src, name } = item
+              return (
+                <li key={id}>
+                  <Link to={src}>
+                    <span>{name}</span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </div>
     </nav>
   )

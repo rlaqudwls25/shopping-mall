@@ -1,13 +1,18 @@
 .productList_container {
-  max-width: 1256px;
+  max-width: 1480px;
   margin: 0px auto;
 
-  .productList_title_box {
-    margin: 30px 0px;
-    .productList_title {
-      font-family: 'Nanum Gothic', sans-serif;
-      font-size: 22px;
-      font-family: bold;
+  .productList_wrapper {
+    margin: 0 30px;
+
+    .productList_title_box {
+      margin: 30px 0px;
+
+      .productList_title {
+        font-family: 'Nanum Gothic', sans-serif;
+        font-size: 22px;
+        font-family: bold;
+      }
     }
   }
 }
@@ -15,14 +20,15 @@
 .products {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
+  gap: 20px;
 }
 
 .products_item {
   width: 300px;
   padding: 20px;
+  margin-bottom: 40px;
   border-radius: 10px;
-  background: #f6f8f9;
+  background: #fdfeff;
   box-shadow: 0px 9px 15px -3px rgba(0, 0, 0, 0.1);
 
   .item_title {

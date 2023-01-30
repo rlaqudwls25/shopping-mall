@@ -1,11 +1,7 @@
 import Admin from '../../components/admin'
 
 const AdminPage = () => {
-  return (
-    <>
-      <Admin />
-    </>
-  )
+  return <Admin />
 }
 
 export default AdminPage
