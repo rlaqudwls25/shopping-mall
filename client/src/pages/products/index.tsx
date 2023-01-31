@@ -21,7 +21,7 @@ const ProductPage = () => {
   }
 
   return (
-    <section>
+    <>
       <div className="productList_container">
         <div className="productList_wrapper">
           <div className="productList_title_box">
@@ -30,10 +30,10 @@ const ProductPage = () => {
           <ul className="products">
             <ProductList list={data?.pages || []} DiffItem={ProductItem} />
           </ul>
-          <div ref={fetchMoreProduct} />
         </div>
       </div>
-    </section>
+      <div ref={fetchMoreProduct} />
+    </>
   )
 }
 

@@ -92,8 +92,8 @@ const AdminItem = ({
         </li>
       ) : (
         <>
-          <li className="products_item">
-            <form onSubmit={updateAdminItem}>
+          <form onSubmit={updateAdminItem}>
+            <li className="admin_update_form">
               <label>
                 상품명:{' '}
                 <input name="title" type="text" required defaultValue={title} />
@@ -118,11 +118,13 @@ const AdminItem = ({
                 />
               </label>
               <label>
-                상세: <textarea name="description" defaultValue={description} />
+                상세: <input name="description" defaultValue={description} />
               </label>
-              <button type="submit">저장</button>
-            </form>
-          </li>
+              <Button className={ButtonStyle.UPDATE} type={'submit'}>
+                상품 내용 수정
+              </Button>
+            </li>
+          </form>
         </>
       )}
     </>

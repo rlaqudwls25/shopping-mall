@@ -19,8 +19,9 @@
       }
     }
 
-    animation: move 300ms 0ms linear forwards;
+    animation: move 200ms 0ms linear forwards;
   }
+
   .admin_form_box {
     display: flex;
     justify-content: flex-start;
@@ -33,5 +34,14 @@
     input {
       margin-right: 20px;
     }
+  }
+}
+
+.admin_update_form {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+
+  input {
+    margin: 10px 0px;
   }
 }

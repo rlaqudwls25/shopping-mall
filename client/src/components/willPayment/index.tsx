@@ -36,8 +36,8 @@ const WillPayment = ({
               <li key={id}>
                 <img src={imageUrl} />
                 <p>{title}</p>
-                <p>수량: {amount}</p>
-                <p>금액: {price * amount}</p>
+                <p>수량: {amount}개</p>
+                <p>금액: {price * amount}원</p>
               </li>
             )
           })}
