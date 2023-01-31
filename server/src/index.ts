@@ -24,6 +24,7 @@ import { DBField, readDB } from './dbController'
     path: '/graphql',
     cors: {
       origin: [
+        '*',
         'https://studio.apollographql.com',
         'https://jin-shop.link',
         'http://127.0.0.1:5173',
