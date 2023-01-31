@@ -24,14 +24,18 @@ const Admin = () => {
   if (isLoading) return <div>로딩중이에오</div>
 
   return (
-    <>
-      <h2>관리자 목록</h2>
-      <AddItem />
-      <ul className="products">
-        <AdminList list={data?.pages || []} />
-      </ul>
+    <div className="productList_container">
+      <div className="productList_wrapper">
+        <div className="productList_title_box">
+          <span className="productList_title">상품 관리</span>
+        </div>
+        <AddItem />
+        <ul className="products">
+          <AdminList list={data?.pages || []} />
+        </ul>
+      </div>
       <div ref={fetchMoreProduct} />
-    </>
+    </div>
   )
 }
 

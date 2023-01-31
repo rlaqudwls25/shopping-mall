@@ -2,11 +2,13 @@ import React, { SyntheticEvent } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { Link } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
+import { ButtonStyle } from '../../enum'
 import { DELETE_PRODUCT, UPDATE_PRODUCT } from '../../pages/graphql/admin'
 import { Product } from '../../pages/graphql/products'
 import { getClient, graphqlFetcher, QueryKeys } from '../../queryClient'
 import { adminEditState } from '../../recoils/admin'
 import arrToobj from '../../util/arrToojb'
+import Button from '../Button/button'
 
 const AdminItem = ({
   description,
@@ -69,20 +71,28 @@ const AdminItem = ({
   return (
     <>
       {!isEdit ? (
-        <li className="products-item">
+        <li className="products_item">
+          <span className="item_title">{title}</span>
           <Link to={`/products/${id}`}>
-            <p className="category">{description}</p>
-            <span className="title">{title}</span>
             <img src={imageUrl} />
-            <span className="price">{price}원</span>
           </Link>
+          <div className="item_space">
+            <p className="item_description">{description}</p>
+            <span className="item_price">{price}원</span>
+          </div>
           {!createdAt && <span>삭제된 상품</span>}
-          <button onClick={abc}>수정</button>
-          <button onClick={deleteAdminItem}>삭제</button>
+          <div className="button_box">
+            <Button className={ButtonStyle.UPDATE} onClick={abc}>
+              수정
+            </Button>
+            <Button className={ButtonStyle.DELETE} onClick={deleteAdminItem}>
+              삭제
+            </Button>
+          </div>
         </li>
       ) : (
         <>
-          <li className="products-item">
+          <li className="products_item">
             <form onSubmit={updateAdminItem}>
               <label>
                 상품명:{' '}

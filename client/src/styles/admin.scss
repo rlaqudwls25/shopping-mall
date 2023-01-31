@@ -1,0 +1,37 @@
+.admin_add_container {
+  margin-bottom: 30px;
+
+  .add_item_title {
+    padding: 20px;
+    span {
+      font-size: 16px;
+    }
+  }
+
+  .admin_form {
+    @keyframes move {
+      from {
+        transform: translateY(0px);
+      }
+
+      to {
+        transform: translateY(10px);
+      }
+    }
+
+    animation: move 300ms 0ms linear forwards;
+  }
+  .admin_form_box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 70px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fdfeff;
+    box-shadow: 0px 9px 15px -3px rgba(0, 0, 0, 0.1);
+    input {
+      margin-right: 20px;
+    }
+  }
+}

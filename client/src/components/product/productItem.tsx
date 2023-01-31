@@ -21,7 +21,7 @@ const ProductItem = ({ description, imageUrl, price, title, id }: Product) => {
       <div className="item_space">
         <span className="item_price">{price} 원</span>
       </div>
-      <div>
+      <div className="button_box">
         <Button className={`${ButtonStyle.ADD}`} onClick={() => addCart(id)}>
           담기
         </Button>

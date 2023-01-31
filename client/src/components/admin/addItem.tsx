@@ -1,8 +1,10 @@
-import { SyntheticEvent } from 'react'
+import { SyntheticEvent, useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
+import { ButtonStyle } from '../../enum'
 import { ADD_PRODUCT } from '../../pages/graphql/admin'
 import { graphqlFetcher, QueryKeys } from '../../queryClient'
 import arrToobj from '../../util/arrToojb'
+import Button from '../Button/button'
 
 // type OmitProduct = Omit<Product, 'id' | 'createdAt'>
 
@@ -15,6 +17,7 @@ interface AdminProps {
 
 const AddItem = () => {
   const queryClient = useQueryClient()
+  const [toggle, setToggle] = useState(false)
 
   const { mutate: addProduct } = useMutation(
     ({ title, imageUrl, price, description }: AdminProps) =>
@@ -36,22 +39,55 @@ const AddItem = () => {
     addProduct(formData as AdminProps)
   }
 
+  const toggleAdminItemBox = () => {
+    setToggle((prev) => !prev)
+  }
+
   return (
-    <form onSubmit={addAdminItem}>
-      <label>
-        상품명: <input name="title" type="text" required />
-      </label>
-      <label>
-        이미지URL: <input name="imageUrl" type="text" required />
-      </label>
-      <label>
-        상품가격: <input name="price" type="number" required min="1000" />
-      </label>
-      <label>
-        상세: <textarea name="description" />
-      </label>
-      <button type="submit">등록</button>
-    </form>
+    <div className="admin_add_container">
+      <Button className={ButtonStyle.ADD} onClick={toggleAdminItemBox}>
+        상품 추가
+      </Button>
+      {toggle ? (
+        <div className="admin_form">
+          <div className="add_item_title">
+            <span>상품을 추가해주세요</span>
+          </div>
+          <div className="admin_form_box">
+            <form onSubmit={addAdminItem}>
+              <label>
+                <input name="title" type="text" required placeholder="상품명" />
+              </label>
+              <label>
+                <input
+                  name="imageUrl"
+                  type="text"
+                  required
+                  placeholder="이미지"
+                />
+              </label>
+              <label>
+                <input
+                  name="price"
+                  type="number"
+                  required
+                  min="1000"
+                  placeholder="가격"
+                />
+              </label>
+              <label>
+                <input name="description" placeholder="상세" />
+              </label>
+              <Button className={ButtonStyle.ADD} type={'submit'}>
+                등록
+              </Button>
+            </form>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+    </div>
   )
 }
 
