@@ -14,9 +14,11 @@ const ProductItem = ({ description, imageUrl, price, title, id }: Product) => {
   return (
     <li className="products_item">
       <span className="item_title">{title}</span>
-      <Link to={`/products/${id}`}>
-        <img src={imageUrl} />
-      </Link>
+      <div className="img_box">
+        <Link to={`/products/${id}`}>
+          <img src={imageUrl} />
+        </Link>
+      </div>
       <p className="item_description">{description}</p>
       <div className="item_space">
         <span className="item_price">{price} 원</span>

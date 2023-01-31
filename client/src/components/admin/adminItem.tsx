@@ -73,9 +73,11 @@ const AdminItem = ({
       {!isEdit ? (
         <li className="products_item">
           <span className="item_title">{title}</span>
-          <Link to={`/products/${id}`}>
-            <img src={imageUrl} />
-          </Link>
+          <div className="img_box">
+            <Link to={`/products/${id}`}>
+              <img src={imageUrl} />
+            </Link>
+          </div>
           <div className="item_space">
             <p className="item_description">{description}</p>
             <span className="item_price">{price}원</span>
