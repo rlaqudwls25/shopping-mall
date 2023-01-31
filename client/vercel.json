@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://api.jin-shop.link/:path*"
+    },
+    {
+      "source": "/api/:path*/",
+      "destination": "https://api.jin-shop.link/:path*/"
+    }
+  ]
+}
