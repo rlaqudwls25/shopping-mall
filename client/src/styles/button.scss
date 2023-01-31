@@ -19,13 +19,16 @@
   }
 
   &.next {
-    width: 50%;
     height: 50px;
     background-color: black;
     span {
       font-family: 'Nanum Gothic', sans-serif;
       font-size: 16px;
     }
+  }
+  &.cancel {
+    height: 50px;
+    background-color: #ec7b86;
   }
 
   span {

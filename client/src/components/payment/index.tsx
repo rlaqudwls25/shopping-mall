@@ -37,6 +37,7 @@ const Payment = () => {
   const cancel = () => {
     setToggleModal(false)
   }
+
   return (
     <div className="cart_container">
       <WillPayment subTitle="결제하기" goNextStep={showModal} />

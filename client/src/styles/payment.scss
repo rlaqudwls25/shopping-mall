@@ -6,19 +6,24 @@
   right: 0;
   display: none;
 
-  .modal-inner {
+  .modal_inner {
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 400px;
+    width: 30%;
     background-color: #fff;
-    width: 80%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
+    .modal_space {
+      padding: 50px;
+    }
   }
 
   p {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Nanum Gothic', sans-serif;
     text-align: center;
   }
 
@@ -33,9 +38,11 @@
     opacity: 0.5;
   }
 
-  .payment-btn {
-    display: flex;
-    justify-content: center;
+  .payment_btn {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 20px 0px;
   }
 
   &.show {
