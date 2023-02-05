@@ -21,7 +21,7 @@ export const getClient = () => {
   return client
 }
 
-const URL = 'https://api.jin-shop.link/graphql'
+const URL = 'https://jin-shop.link/graphql'
 // const URL = 'http://localhost:8000/graphql'
 
 export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
