@@ -4,4 +4,5 @@ export enum ButtonStyle {
   DELETE = 'button delete',
   NEXT = 'button next',
   CANCEL = 'button cancel',
+  YES = 'button yes',
 }

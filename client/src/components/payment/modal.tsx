@@ -27,7 +27,7 @@ const PaymentModal = ({
               <div className="modal_space">
                 <p>결제 하시겠습니까?</p>
                 <div className="payment_btn">
-                  <Button className={ButtonStyle.NEXT} onClick={proceed}>
+                  <Button className={ButtonStyle.YES} onClick={proceed}>
                     예
                   </Button>
                   <Button className={ButtonStyle.CANCEL} onClick={cancel}>

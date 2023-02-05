@@ -24,30 +24,28 @@ const WillPayment = ({
       <div className="cart_box">
         <span className="select_item">선택한 상품</span>
       </div>
-      <div>
-        <ul>
-          {checkedItems?.map((item: CartType) => {
-            const {
-              amount,
-              product: { price, title, imageUrl },
-              id,
-            } = item
-            return (
-              <li key={id}>
-                <img src={imageUrl} />
-                <p>{title}</p>
-                <p>수량: {amount}개</p>
-                <p>금액: {price * amount}원</p>
-              </li>
-            )
-          })}
-        </ul>
-        <div className="pay_box">
-          <span>전체 금액: {totalPrice}원</span>
-          <Button className={ButtonStyle.NEXT} onClick={goNextStep}>
-            결제창으로 이동
-          </Button>
-        </div>
+      <ul>
+        {checkedItems?.map((item: CartType) => {
+          const {
+            amount,
+            product: { price, title, imageUrl },
+            id,
+          } = item
+          return (
+            <li key={id}>
+              <img src={imageUrl} />
+              <p>{title}</p>
+              <p>수량: {amount}개</p>
+              <p>금액: {price * amount}원</p>
+            </li>
+          )
+        })}
+      </ul>
+      <div className="pay_box">
+        <span>전체 금액: {totalPrice}원</span>
+        <Button className={ButtonStyle.NEXT} onClick={goNextStep}>
+          결제창으로 이동
+        </Button>
       </div>
     </div>
   )

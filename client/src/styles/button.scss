@@ -28,7 +28,11 @@
   }
   &.cancel {
     height: 50px;
-    background-color: #ec7b86;
+    background-color: #ec3e4f;
+  }
+  &.yes {
+    height: 50px;
+    background-color: black;
   }
 
   span {
