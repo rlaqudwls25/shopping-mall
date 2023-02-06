@@ -41,8 +41,6 @@ const cartResolver: Resolver = {
     updateCart: (parent, { id, amount }, { db }) => {
       const updateTarget = db.cart.findIndex((item) => item.id === id)
 
-      console.log(updateTarget)
-
       if (updateTarget < 0) throw Error('상품이 없다.')
 
       const newCartItem = {
@@ -50,8 +48,6 @@ const cartResolver: Resolver = {
         id,
         amount,
       }
-
-      console.log(newCartItem)
 
       db.cart.splice(updateTarget, 1, newCartItem)
       setJSON(db.cart)
