@@ -13,17 +13,13 @@ const cartResolver: Resolver = {
     addCart: (parent, { id }, { db }) => {
       if (!id) throw new Error('상품 ID가 없습니다.')
 
-      if (!db.cart.length) {
-        db.cart.push({
-          id: '1',
-          amount: 2,
-        })
-      }
       const targetProduct = db.products.find((item) => item.id === id)
+
       if (!targetProduct) {
         throw new Error('상품이 없습니다.')
       }
       const existCartIndex = db.cart.findIndex((item) => item.id === id)
+
       if (existCartIndex > -1) {
         const newCartItem = {
           // ...db.cart[existCartIndex],
@@ -45,13 +41,17 @@ const cartResolver: Resolver = {
     updateCart: (parent, { id, amount }, { db }) => {
       const updateTarget = db.cart.findIndex((item) => item.id === id)
 
-      if (!updateTarget) throw Error('상품이 없다.')
+      console.log(updateTarget)
+
+      if (updateTarget < 0) throw Error('상품이 없다.')
 
       const newCartItem = {
         // ...db.cart[updateTarget],
         id,
         amount,
       }
+
+      console.log(newCartItem)
 
       db.cart.splice(updateTarget, 1, newCartItem)
       setJSON(db.cart)
