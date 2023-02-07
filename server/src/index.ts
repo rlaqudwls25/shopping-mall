@@ -27,6 +27,7 @@ import { DBField, readDB } from './dbController'
         '*',
         'https://studio.apollographql.com',
         'http://127.0.0.1:5173',
+        'https://api.jin-shop.link/graphql',
       ],
       credentials: true,
     },
