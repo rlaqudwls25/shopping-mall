@@ -21,8 +21,9 @@ export const getClient = () => {
   return client
 }
 
-const BASE_URL = 'https://jin-market.herokuapp.com'
-// const URL = 'http://localhost:8000/graphql'
+const BASE_URL = import.meta.env.VITE_SERVER_URL as string
+
+console.log('BASE_URL', BASE_URL)
 
 export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
   request(`${BASE_URL}/graphql`, query, variables, {
