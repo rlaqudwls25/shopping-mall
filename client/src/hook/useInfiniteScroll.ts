@@ -19,6 +19,7 @@ const useInfiniteScroll = (fetchMoreProduct: RefObject<HTMLDivElement>) => {
     if (!observeRef.current) {
       observeRef.current = new IntersectionObserver((entries) => {
         let isIntersect = entries.some((entry) => entry.isIntersecting)
+
         setIntersecting(isIntersect)
       })
     }

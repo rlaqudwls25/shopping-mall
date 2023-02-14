@@ -6,7 +6,12 @@ const Cart = () => {
 
   const newData = data?.cart || []
 
-  if (!newData.length) return <div>장바구니가 비었습니다.</div>
+  if (!newData.length)
+    return (
+      <div className="blank_cart_container">
+        <span>장바구니가 비었습니다.</span>
+      </div>
+    )
 
   return <CartItem items={newData} />
 }
