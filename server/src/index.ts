@@ -3,10 +3,12 @@ import { ApolloServer } from 'apollo-server-express'
 import schema from './schema'
 import resolvers from './resolver'
 import { DBField, readDB } from './dbController'
+import env from './envLoader'
 ;(async () => {
-  const clientUrl = 'https://shopping-mall-client-plum.vercel.app'
+  const clientUrl = env.CLIENT_URL as string
 
-  const port = process.env.PORT || 8000
+  const port = env.PORT || 8000
+
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
@@ -26,12 +28,7 @@ import { DBField, readDB } from './dbController'
     app,
     path: '/graphql',
     cors: {
-      origin: [
-        '*',
-        'https://studio.apollographql.com',
-        'http://127.0.0.1:5173',
-        clientUrl,
-      ],
+      origin: [clientUrl, 'https://studio.apollographql.com'],
       credentials: true,
     },
   })
