@@ -21,11 +21,14 @@ export const getClient = () => {
   return client
 }
 
-const URL = 'https://jin-market.herokuapp.com/graphql'
+const BASE_URL = 'https://jin-market.herokuapp.com'
 // const URL = 'http://localhost:8000/graphql'
 
 export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
-  request(URL, query, variables)
+  request(`${BASE_URL}/graphql`, query, variables, {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': BASE_URL,
+  })
 
 export const QueryKeys = {
   PRODUCTS: 'PRODUCTS',
