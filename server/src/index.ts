@@ -4,6 +4,9 @@ import schema from './schema'
 import resolvers from './resolver'
 import { DBField, readDB } from './dbController'
 ;(async () => {
+  const clientUrl = 'https://shopping-mall-client-plum.vercel.app'
+
+  const port = process.env.PORT || 8000
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
@@ -27,12 +30,12 @@ import { DBField, readDB } from './dbController'
         '*',
         'https://studio.apollographql.com',
         'http://127.0.0.1:5173',
-        'https://api.jin-shop.link/graphql',
+        clientUrl,
       ],
       credentials: true,
     },
   })
 
-  await app.listen({ port: 8000 })
+  await app.listen({ port })
   console.log('sever listening on 8000')
 })()
