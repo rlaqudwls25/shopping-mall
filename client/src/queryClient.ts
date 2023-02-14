@@ -21,7 +21,7 @@ export const getClient = () => {
   return client
 }
 
-const URL = 'https://jin-market.herokuapp.com//graphql'
+const URL = 'https://jin-market.herokuapp.com/graphql'
 // const URL = 'http://localhost:8000/graphql'
 
 export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
