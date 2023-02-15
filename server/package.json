@@ -20,6 +20,7 @@
   },
   "scripts": {
     "dev": "nodemon --exec 'ts-node ./src/index.ts'",
-    "serve": "node ./index.js"
+    "build": "rm -rf dist && tsc",
+    "serve": "npm run build && cross-env NODE_ENV=production node ./dist/index.js"
   }
 }
