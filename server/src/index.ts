@@ -7,8 +7,6 @@ import env from './envLoader'
 ;(async () => {
   const clientUrl = env.CLIENT_URL as string
 
-  console.log('clientUrl', clientUrl)
-
   const port = env.PORT || 8000
 
   const server = new ApolloServer({
@@ -32,7 +30,7 @@ import env from './envLoader'
     path: '/graphql',
     cors: {
       origin: [
-        '*',
+        'https://jin-market.herokuapp.com',
         clientUrl,
         'https://studio.apollographql.com',
         'http://127.0.0.1:5173',
