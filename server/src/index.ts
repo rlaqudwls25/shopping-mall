@@ -7,7 +7,7 @@ import env from './envLoader'
 ;(async () => {
   const clientUrl = env.CLIENT_URL as string
 
-  const port = env.PORT || 8000
+  const port = process.env.PORT || 8000
 
   const server = new ApolloServer({
     typeDefs: schema,
@@ -39,5 +39,5 @@ import env from './envLoader'
   })
 
   await app.listen({ port })
-  console.log('sever listening on 8000')
+  console.log(`sever listening on ${port}`)
 })()
