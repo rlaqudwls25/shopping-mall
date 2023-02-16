@@ -13,6 +13,7 @@ import env from './envLoader'
     typeDefs: schema,
     resolvers,
     csrfPrevention: true,
+    introspection: true,
     cache: 'bounded',
     context: {
       db: {

@@ -25,6 +25,7 @@ const BASE_URL = import.meta.env.VITE_SERVER_URL as string
 
 export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
   request(`${BASE_URL}/graphql`, query, variables, {
+    'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': BASE_URL,
   })
 
