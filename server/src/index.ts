@@ -7,7 +7,7 @@ import env from './envLoader'
 ;(async () => {
   const clientUrl = env.CLIENT_URL as string
 
-  const port = process.env.PORT || 8000
+  const port = env.PORT || 8000
 
   const server = new ApolloServer({
     typeDefs: schema,
