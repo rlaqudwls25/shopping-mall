@@ -25,10 +25,7 @@ export const getClient = () => {
 const URL = 'https://jin-market.herokuapp.com/graphql'
 
 export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
-  request(URL, query, variables, {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': URL,
-  })
+  request(URL, query, variables)
 
 export const QueryKeys = {
   PRODUCTS: 'PRODUCTS',
