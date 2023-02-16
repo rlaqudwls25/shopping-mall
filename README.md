@@ -18,7 +18,9 @@
 
 ### 배포
 * Front - Vercel
-* Back - AWS EC2
+* Back - Heroku
+
+## https://shopping-mall-client-plum.vercel.app
 
 ### 2. 기능 구현
 * InfinityScroll
