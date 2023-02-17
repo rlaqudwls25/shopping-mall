@@ -12,9 +12,6 @@ import env from './envLoader'
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
-    csrfPrevention: true,
-    introspection: true,
-    cache: 'bounded',
     context: {
       db: {
         products: readDB(DBField.PRODUCTS),
