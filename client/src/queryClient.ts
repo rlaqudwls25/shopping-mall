@@ -27,6 +27,7 @@ export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
   request(`${BASE_URL}/graphql`, query, variables, {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': BASE_URL,
+    'Access-Control-Request-Method': 'GET, POST  PUT, DELETE, OPTIONS',
   })
 
 export const QueryKeys = {
