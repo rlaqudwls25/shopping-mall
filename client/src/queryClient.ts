@@ -23,12 +23,11 @@ export const getClient = () => {
 
 const BASE_URL = import.meta.env.VITE_SERVER_URL as string
 
-console.log('BASE_URL', BASE_URL)
-
-console.log('BASE_URL/graphql', `${BASE_URL}/graphql`)
-
 export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
-  request(`${BASE_URL}/graphql`, query, variables)
+  request(`${BASE_URL}/graphql`, query, variables, {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': BASE_URL,
+  })
 
 export const QueryKeys = {
   PRODUCTS: 'PRODUCTS',
