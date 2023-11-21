@@ -20,7 +20,7 @@
 * Front - Vercel
 * Back - Heroku
 
-## https://shopping-mall-client-plum.vercel.app
+### https://shopping-mall-client-peach.vercel.app
 
 ### 2. 기능 구현
 * InfinityScroll
